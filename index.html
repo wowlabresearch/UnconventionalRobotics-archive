@@ -314,6 +314,33 @@
       color: #64748b;
       grid-column: 1 / -1;
     }
+    .card-desc {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .card-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .keyword-pill {
+      background-color: #f1f5f9;
+      color: #64748b;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    .card-footer-btn {
+      margin-top: auto;
+      font-size: 0.85rem;
 
     @media (max-width: 640px) {
       body { padding: 20px 14px; }
@@ -397,7 +424,8 @@
         members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
         title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
         desc: "a mobile platform-based Encounter-type haptic system designed to provide reaction force feedback from virtual objects to the user.",
-        thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
+        keywords: ["Haptics", "Mobile Platform", "Pantograph"],
+        thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team4_report.pdf",
         slideUrl: "./assets/2025/slides/team4_slides.pdf"
@@ -409,6 +437,7 @@
         members: "Joonhee Lee, Sojin Han, Eunchae Song, Shinyoung Lee",
         title: "Real-Time Robot-Hand Interface for Driver Acceleration Feedback",
         desc: "a real-time robot-hand interface that detects rapid pedal operations using potentiometer-based sensing and delivers empathy-oriented haptic feedback augmented by simple LED-based visual cues.",
+        keywords: ["Robot-Hand", "Real-Time", "Haptic Feedback"],
         thumb: "./assets/2025/thumbnails/MED-Thumbnail.gif",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team5_report.pdf",
@@ -421,6 +450,7 @@
         members: "Gyuhyun Jang, Yongmin Park, SoYoon Park",
         title: "Hand-driven Embodied Interface for Hybrid Origami Soft Robot",
         desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot, allowing users to directly manipulate the robot's deformation through natural hand motions without prior training. We design a hybrid origami structure combining Kresling and accordion patterns to balance stiffness and flexibility, and we implement a wire-driven actuation system using continuous-rotation servomotors. The robot’s deformation behavior is analyzed through an ADAMS simulation and validated by physical experiments. A web-based real-time control system connects a browser interface and embedded hardware via the Web Serial API, enabling direct interaction without a dedicated server. Experimental results show that the proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots, demonstrating a practical approach to intuitive soft robot control.",
+        keywords: ["Origami", "Soft Robot", "Interface"],
         thumb: "./assets/2025/thumbnails/III-Thumbnail.gif",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team5_report.pdf",
@@ -433,6 +463,7 @@
         members: "Seungmin Kang, Jihoon Kim, Junghyeon Cheon, Seoyoon Jang",
         title: "Physical Embodiment of Invisible Emotions: A Pneumatic-Based Breathing Soft Robotic Interface",
         desc: "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to intuitively observe their abstract emotional states as physical entities. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement. Specifically, during periods of negative affect such as sadness, the robot's tranquil respiratory kinematics are designed to induce psychological stabilization, effectively providing a consoling effect.",
+        keywords: ["Emotion", "Pneumatic", "Soft Robotics"],
         thumb: "./assets/2025/thumbnails/LIMERO-Thumbnail.gif",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team5_report.pdf",
