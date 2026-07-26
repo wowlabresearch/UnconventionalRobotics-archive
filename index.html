@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Research & Project Archive</title>
+  
+  <!-- 
+    IMPORTANT FOR WIX & GITHUB PAGES:
+    If your GIF/images appear broken in Wix, uncomment the line below 
+    and replace with your actual GitHub Pages URL.
+  -->
+  <!-- <base href="https://[YOUR_USERNAME].github.io/student-archive/"> -->
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
     
     body {
       background-color: #f8f9fa;
@@ -69,6 +77,13 @@
       border-color: #2563eb;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
+    .filter-btn:disabled {
+      background: #f8f9fa;
+      color: #94a3b8;
+      border-color: #e2e8f0;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
 
     /* Search Input Bar */
     .search-wrapper {
@@ -127,6 +142,8 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
+      /* Ensures GIFs are displayed smoothly */
+      image-rendering: -webkit-optimize-contrast; 
     }
     .card:hover .card-thumb {
       transform: scale(1.05);
@@ -311,19 +328,19 @@
   <div class="archive-container">
     <div class="header">
       <h1>Student Research & Project Archive</h1>
-      <p>연구실 수업 개발 결과물 (시연 영상, 발표자료, 최종 보고서)</p>
+      <p>Lab Course Projects (Demo Videos, Presentations, Final Reports)</p>
     </div>
 
     <!-- Year Filter Bar -->
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="setYearFilter('all', this)">전체 보기</button>
-      <button class="filter-btn" onclick="setYearFilter('2026', this)">2026년</button>
-      <button class="filter-btn" onclick="setYearFilter('2025', this)">2025년</button>
+      <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
+      <button class="filter-btn" disabled title="Coming Soon">2026</button>
+      <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
     </div>
 
     <!-- Search Bar -->
     <div class="search-wrapper">
-      <input type="text" id="searchInput" class="search-input" placeholder="팀명, 프로젝트 제목, 연구 주제 검색..." oninput="handleSearch()" />
+      <input type="text" id="searchInput" class="search-input" placeholder="Search teams, project titles, or research topics..." oninput="handleSearch()" />
     </div>
 
     <!-- Projects Grid Container -->
@@ -333,17 +350,17 @@
   <!-- Detail Modal -->
   <div class="modal-overlay" id="projectModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()" aria-label="닫기">&times;</button>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
       <div>
         <span class="modal-header-tag" id="modalYearBadge">2026</span>
         <span class="modal-header-tag" id="modalTeamTag" style="background: #f1f5f9; color:#475569;">Team 1</span>
       </div>
-      <h2 class="modal-title" id="modalTitle">프로젝트 제목</h2>
-      <p class="modal-team" id="modalTeam">팀원 정보</p>
+      <h2 class="modal-title" id="modalTitle">Project Title</h2>
+      <p class="modal-team" id="modalTeam">Team Members</p>
 
-      <!-- Video Section (Handles both YouTube and Local MP4) -->
+      <!-- Video Section -->
       <div class="media-section">
-        <h3>시연 영상 (Demo Video)</h3>
+        <h3>Demo Video</h3>
         <div class="video-container" id="videoContainer">
           <!-- Dynamically inserted iframe or video element -->
         </div>
@@ -351,13 +368,13 @@
 
       <!-- Description & Download Section -->
       <div class="media-section">
-        <h3>연구 개요</h3>
+        <h3>Research Overview</h3>
         <p id="modalDesc" style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 18px;"></p>
         
-        <h3>아카이브 자료</h3>
+        <h3>Archived Materials</h3>
         <div class="btn-group">
-          <a id="modalReportLink" href="#" target="_blank" class="btn btn-primary">📄 최종 보고서 (PDF)</a>
-          <a id="modalSlideLink" href="#" target="_blank" class="btn btn-secondary">📊 발표 슬라이드</a>
+          <a id="modalReportLink" href="#" target="_blank" class="btn btn-primary">📄 Final Report (PDF)</a>
+          <a id="modalSlideLink" href="#" target="_blank" class="btn btn-secondary">📊 Presentation Slides</a>
         </div>
       </div>
     </div>
@@ -365,72 +382,32 @@
 
   <script>
     /**
-     * 연도별 구획 에셋 (Year-based Asset Hierarchy)
+     * Year-based Asset Hierarchy
      * 
-     * 경로 구조:
-     * 썸네일: ./assets/[연도]/thumbnails/[팀파일명].jpg
-     * 보고서: ./assets/[연도]/reports/[팀파일명].pdf
-     * 슬라이드: ./assets/[연도]/slides/[팀파일명].pdf (또는 .pptx)
-     * 영상 (MP4 파일): videoUrl: "./assets/[연도]/videos/[팀파일명].mp4"
-     * 영상 (YouTube): youtubeEmbed: "https://www.youtube.com/embed/비디오ID"
+     * IMPORTANT FOR GIFs: 
+     * To ensure your GIF loops indefinitely, it must be exported from your image editor 
+     * with the "Loop: Forever" setting. The browser will automatically loop it.
      */
     const rawProjects = [
       {
         id: 1,
-        year: "2026",
-        team: "Team 1",
-        members: "홍길동, 김철수, 이영희",
-        title: "하드웨어 햅틱 인터페이스 기반 액추에이터 제어",
-        desc: "실시간 물리적 피드백을 제공하는 사용자 중심의 햅틱 인터페이스 디바이스 설계 및 모션 액추에이터 제어 시스템 연구 결과물입니다.",
-        thumb: "./assets/2026/thumbnails/team1.jpg",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        // videoUrl: "./assets/2026/videos/team1.mp4", // 로컬 MP4 파일 사용 시 주석 해제
-        reportUrl: "./assets/2026/reports/team1_report.pdf",
-        slideUrl: "./assets/2026/slides/team1_slides.pdf"
-      },
-      {
-        id: 2,
-        year: "2026",
-        team: "Team 2",
-        members: "박민수, 정수진, 최동현",
-        title: "자율주행 센서 데이터 시각화 3D 라이브러리",
-        desc: "LiDAR 및 카메라 융합 데이터를 웹 캔버스 상에서 실시간 3D 포인트 클라우드로 렌더링하여 분석하는 모니터링 대시보드입니다.",
-        thumb: "./assets/2026/thumbnails/team2.jpg",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/2026/reports/team2_report.pdf",
-        slideUrl: "./assets/2026/slides/team2_slides.pdf"
-      },
-      {
-        id: 3,
-        year: "2026",
-        team: "Team 3",
-        members: "강태양, 윤서아",
-        title: "스펙큘러티브 디자인 프레임워크를 적용한 인터랙션",
-        desc: "미래 지능형 주거 환경에서의 인간-컴퓨터 상호작용 시나리오를 가정한 연구 중심 UX 프로토타이핑 개발 프로젝트입니다.",
-        thumb: "./assets/2026/thumbnails/team3.jpg",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/2026/reports/team3_report.pdf",
-        slideUrl: "./assets/2026/slides/team3_slides.pdf"
-      },
-      {
-        id: 4,
         year: "2025",
-        team: "NCT",
-        members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
-        title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
-        desc: "a mobile platform-based Encounter-type haptic system designed to provide reaction force feedback from virtual objects to the user.",
-        thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
+        team: "Team 1",
+        members: "Ryan Lim, Emily Song, Kevin Han",
+        title: "Low-power ESP32-based Embedded Healthcare Node",
+        desc: "An embedded module that real-time filters bio-sensor noise in an ultra-small microcontroller environment and transmits it to mobile devices.",
+        thumb: "./assets/2025/thumbnails/team4.gif",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team4_report.pdf",
         slideUrl: "./assets/2025/slides/team4_slides.pdf"
       },
       {
-        id: 5,
+        id: 2,
         year: "2025",
-        team: "Team 5",
-        members: "조유진, 백승호",
-        title: "생산 공정 데이터를 활용한 지식 텍사노미 모델링",
-        desc: "제조 현장의 숙련자 노하우 데이터를 정량화 구조로 정제하고 이를 AI 추천 인터페이스로 시각화한 모듈입니다.",
+        team: "Team 2",
+        members: "Eugene Cho, Seung Baek",
+        title: "Knowledge Taxonomy Modeling using Production Process Data",
+        desc: "A module that quantifies and refines expert know-how data from the manufacturing floor and visualizes it into an AI recommendation interface.",
         thumb: "./assets/2025/thumbnails/team5.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
         reportUrl: "./assets/2025/reports/team5_report.pdf",
@@ -441,7 +418,7 @@
     let currentYearFilter = 'all';
     let currentSearchTerm = '';
 
-    // 이미지 파일이 없을 때 기본 대체 이미지
+    // Fallback image in case the GIF/JPG path is broken
     const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='20' fill='%2364748b'%3EProject Thumbnail%3C/text%3E%3C/svg%3E";
 
     function renderProjects() {
@@ -460,7 +437,7 @@
       if (filtered.length === 0) {
         grid.innerHTML = `
           <div class="empty-state">
-            <p>검색 결과 또는 해당 연도의 결과물이 없습니다.</p>
+            <p>No projects found for the selected year or search criteria.</p>
           </div>
         `;
       } else {
@@ -470,7 +447,7 @@
           card.onclick = () => openModal(p);
           card.innerHTML = `
             <div class="card-thumb-wrapper">
-              <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" class="card-thumb" />
+              <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" class="card-thumb" loading="lazy" />
               <span class="year-badge">${p.year}</span>
             </div>
             <div class="card-body">
@@ -479,13 +456,16 @@
               <p class="card-members">👤 ${p.members}</p>
               <p class="card-desc">${p.desc}</p>
               <div class="card-footer-btn">
-                상세보기 및 자료 보기 &rarr;
+                View Details & Materials &rarr;
               </div>
             </div>
           `;
           grid.appendChild(card);
         });
       }
+      
+      // Update Wix iframe height dynamically after rendering
+      sendHeightToWix();
     }
 
     function setYearFilter(year, btnElement) {
@@ -501,10 +481,10 @@
     }
 
     function openModal(project) {
-      document.getElementById('modalYearBadge').innerText = project.year + '년';
+      document.getElementById('modalYearBadge').innerText = project.year;
       document.getElementById('modalTeamTag').innerText = project.team;
       document.getElementById('modalTitle').innerText = project.title;
-      document.getElementById('modalTeam').innerText = `연구팀원: ${project.members}`;
+      document.getElementById('modalTeam').innerText = `Team Members: ${project.members}`;
       document.getElementById('modalDesc').innerText = project.desc;
       
       const videoContainer = document.getElementById('videoContainer');
@@ -527,12 +507,15 @@
       document.getElementById('modalReportLink').href = project.reportUrl || "#";
       document.getElementById('modalSlideLink').href = project.slideUrl || "#";
       document.getElementById('projectModal').style.display = 'flex';
+      
+      sendHeightToWix();
     }
 
     function closeModal() {
       document.getElementById('projectModal').style.display = 'none';
       const videoContainer = document.getElementById('videoContainer');
       videoContainer.innerHTML = '';
+      sendHeightToWix();
     }
 
     window.onclick = function(event) {
@@ -542,9 +525,26 @@
       }
     };
 
+    /**
+     * Auto-Height Sync for Wix Integration
+     * This function sends the actual document height to the parent Wix window
+     * to prevent double scrollbars.
+     */
+    function sendHeightToWix() {
+      if (window.parent) {
+        // Calculate the total scrollable height of the document
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        window.parent.postMessage({ type: 'RESIZE_IFRAME', height: height }, '*');
+      }
+    }
+
     window.addEventListener('load', () => {
       renderProjects();
+      // Wait for images to load, then recalculate height
+      setTimeout(sendHeightToWix, 500); 
     });
+    
+    window.addEventListener('resize', sendHeightToWix);
   </script>
 </body>
 </html>
