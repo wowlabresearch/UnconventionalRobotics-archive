@@ -365,13 +365,14 @@
 
   <script>
     /**
-     * GitHub Repository Assets 연동 데이터베이스
+     * 연도별 구획 에셋 (Year-based Asset Hierarchy)
      * 
-     * 이미지: ./assets/thumbnails/[팀파일명].jpg
-     * 보고서: ./assets/reports/[팀파일명].pdf
-     * 슬라이드: ./assets/slides/[팀파일명].pdf (또는 .pptx)
-     * 영상 (로컬 MP4 사용 시): videoUrl: "./assets/videos/[팀파일명].mp4"
-     * 영상 (YouTube 사용 시): youtubeEmbed: "https://www.youtube.com/embed/비디오ID"
+     * 경로 구조:
+     * 썸네일: ./assets/[연도]/thumbnails/[팀파일명].jpg
+     * 보고서: ./assets/[연도]/reports/[팀파일명].pdf
+     * 슬라이드: ./assets/[연도]/slides/[팀파일명].pdf (또는 .pptx)
+     * 영상 (MP4 파일): videoUrl: "./assets/[연도]/videos/[팀파일명].mp4"
+     * 영상 (YouTube): youtubeEmbed: "https://www.youtube.com/embed/비디오ID"
      */
     const rawProjects = [
       {
@@ -381,11 +382,11 @@
         members: "홍길동, 김철수, 이영희",
         title: "하드웨어 햅틱 인터페이스 기반 액추에이터 제어",
         desc: "실시간 물리적 피드백을 제공하는 사용자 중심의 햅틱 인터페이스 디바이스 설계 및 모션 액추에이터 제어 시스템 연구 결과물입니다.",
-        thumb: "./assets/thumbnails/2026_team1.jpg",
+        thumb: "./assets/2026/thumbnails/team1.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        // videoUrl: "./assets/videos/2026_team1.mp4", // 로컬 MP4 파일 사용시 활성화
-        reportUrl: "./assets/reports/2026_team1_report.pdf",
-        slideUrl: "./assets/slides/2026_team1_slides.pdf"
+        // videoUrl: "./assets/2026/videos/team1.mp4", // 로컬 MP4 파일 사용 시 주석 해제
+        reportUrl: "./assets/2026/reports/team1_report.pdf",
+        slideUrl: "./assets/2026/slides/team1_slides.pdf"
       },
       {
         id: 2,
@@ -394,10 +395,10 @@
         members: "박민수, 정수진, 최동현",
         title: "자율주행 센서 데이터 시각화 3D 라이브러리",
         desc: "LiDAR 및 카메라 융합 데이터를 웹 캔버스 상에서 실시간 3D 포인트 클라우드로 렌더링하여 분석하는 모니터링 대시보드입니다.",
-        thumb: "./assets/thumbnails/2026_team2.jpg",
+        thumb: "./assets/2026/thumbnails/team2.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/reports/2026_team2_report.pdf",
-        slideUrl: "./assets/slides/2026_team2_slides.pdf"
+        reportUrl: "./assets/2026/reports/team2_report.pdf",
+        slideUrl: "./assets/2026/slides/team2_slides.pdf"
       },
       {
         id: 3,
@@ -406,10 +407,10 @@
         members: "강태양, 윤서아",
         title: "스펙큘러티브 디자인 프레임워크를 적용한 인터랙션",
         desc: "미래 지능형 주거 환경에서의 인간-컴퓨터 상호작용 시나리오를 가정한 연구 중심 UX 프로토타이핑 개발 프로젝트입니다.",
-        thumb: "./assets/thumbnails/2026_team3.jpg",
+        thumb: "./assets/2026/thumbnails/team3.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/reports/2026_team3_report.pdf",
-        slideUrl: "./assets/slides/2026_team3_slides.pdf"
+        reportUrl: "./assets/2026/reports/team3_report.pdf",
+        slideUrl: "./assets/2026/slides/team3_slides.pdf"
       },
       {
         id: 4,
@@ -418,10 +419,10 @@
         members: "임현우, 송지은, 한경민",
         title: "저전력 ESP32 기반 임베디드 헬스케어 노드",
         desc: "초소형 마이크로컨트롤러 환경에서 바이오 센서 노이즈를 실시간 필터링하고 모바일 기기로 전송하는 임베디드 모듈입니다.",
-        thumb: "./assets/thumbnails/2025_team4.jpg",
+        thumb: "./assets/2025/thumbnails/team4.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/reports/2025_team4_report.pdf",
-        slideUrl: "./assets/slides/2025_team4_slides.pdf"
+        reportUrl: "./assets/2025/reports/team4_report.pdf",
+        slideUrl: "./assets/2025/slides/team4_slides.pdf"
       },
       {
         id: 5,
@@ -430,17 +431,17 @@
         members: "조유진, 백승호",
         title: "생산 공정 데이터를 활용한 지식 텍사노미 모델링",
         desc: "제조 현장의 숙련자 노하우 데이터를 정량화 구조로 정제하고 이를 AI 추천 인터페이스로 시각화한 모듈입니다.",
-        thumb: "./assets/thumbnails/2025_team5.jpg",
+        thumb: "./assets/2025/thumbnails/team5.jpg",
         youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/reports/2025_team5_report.pdf",
-        slideUrl: "./assets/slides/2025_team5_slides.pdf"
+        reportUrl: "./assets/2025/reports/team5_report.pdf",
+        slideUrl: "./assets/2025/slides/team5_slides.pdf"
       }
     ];
 
     let currentYearFilter = 'all';
     let currentSearchTerm = '';
 
-    // 기본 대체 이미지 (파일이 없을 경우 표시)
+    // 이미지 파일이 없을 때 기본 대체 이미지
     const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='20' fill='%2364748b'%3EProject Thumbnail%3C/text%3E%3C/svg%3E";
 
     function renderProjects() {
@@ -499,7 +500,6 @@
       renderProjects();
     }
 
-    // Modal Controls
     function openModal(project) {
       document.getElementById('modalYearBadge').innerText = project.year + '년';
       document.getElementById('modalTeamTag').innerText = project.team;
@@ -510,7 +510,6 @@
       const videoContainer = document.getElementById('videoContainer');
       videoContainer.innerHTML = '';
 
-      // 로컬 MP4 파일 경로가 있으면 video 태그, 아니면 YouTube iframe 생성
       if (project.videoUrl) {
         const videoElem = document.createElement('video');
         videoElem.src = project.videoUrl;
@@ -533,7 +532,7 @@
     function closeModal() {
       document.getElementById('projectModal').style.display = 'none';
       const videoContainer = document.getElementById('videoContainer');
-      videoContainer.innerHTML = ''; // 재생 중인 영상 정지
+      videoContainer.innerHTML = '';
     }
 
     window.onclick = function(event) {
