@@ -499,6 +499,14 @@
       } else {
         filtered.forEach(p => {
           const card = document.createElement('div');
+          
+          let keywordsHtml = '';
+          if (p.keywords && p.keywords.length > 0) {
+            keywordsHtml = '<div class="card-keywords">' + 
+              p.keywords.map(kw => `<span class="keyword-pill">${kw}</span>`).join('') + 
+              '</div>';
+          }
+
           card.className = 'card';
           card.onclick = () => openModal(p);
           card.innerHTML = `
@@ -511,6 +519,7 @@
               <h3 class="card-title">${p.title}</h3>
               <p class="card-members">👤 ${p.members}</p>
               <p class="card-desc">${p.desc}</p>
+              ${keywordsHtml}
               <div class="card-footer-btn">
                 View Details & Materials &rarr;
               </div>
