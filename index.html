@@ -376,6 +376,18 @@
       object-fit: cover;
     }
 
+    /* Project Description */
+    .project-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: #f8f9fa;
+      border-left: 4px solid #2563eb;
+      border-radius: 4px;
+    }
+
     /* Blog Content */
     .blog-content {
       color: #475569;
@@ -519,6 +531,11 @@
         </div>
       </div>
 
+      <!-- Project Description -->
+      <div class="project-desc" id="projectDesc">
+        <!-- Dynamically inserted description -->
+      </div>
+
       <!-- Blog Content Section -->
       <div id="blogContent" class="blog-content" style="display: none;">
         <!-- Dynamically inserted blog content -->
@@ -551,7 +568,7 @@
         team: "NCT",
         members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
         title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
-        desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional grou[...]",
+        desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional gro[...]",
         keywords: ["Haptics", "XR", "Pantograph"],
         thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
         
@@ -830,6 +847,10 @@
         galleryGrid.style.display = 'grid';
         videoContainer.style.display = 'none';
       }
+
+      // Display project description
+      const projectDescDiv = document.getElementById('projectDesc');
+      projectDescDiv.innerText = project.desc;
 
       // Handle blog content
       const blogContentDiv = document.getElementById('blogContent');
