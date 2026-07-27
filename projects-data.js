@@ -10,7 +10,7 @@ const rawProjects = [
     team: "NCT",
     members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
     title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
-    desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional group-based [...]
+    desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional group-ba[...]
     keywords: ["Haptics", "XR", "Pantograph"],
     thumb: "./assets/2025/thumbnails/NCT-Thumbnail.gif",
     
@@ -24,7 +24,7 @@ const rawProjects = [
     // Blog-style content (when no video, or as additional details)
     blogContent: `
       <h3>Project Overview</h3>
-      <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users interact[...]
+      <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users inte[...]
       <h3>Key Features</h3>
       <ul>
         <li>Mobile platform-based architecture for dynamic spatial feedback</li>
@@ -55,20 +55,35 @@ const rawProjects = [
     team: "MED",
     members: "Joonhee Lee, Sojin Han, Eunchae Song, Shinyoung Lee",
     title: "Real-Time Robot-Hand Interface for Driver Acceleration Feedback",
-    desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-time [...]
+    desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-t[...]
     keywords: ["Robot-Hand", "Mobility", "Haptics"],
     thumb: "./assets/2025/thumbnails/MED-Thumbnail.gif",
     
     youtubeEmbed: "https://www.youtube.com/embed/E4HrcrCPkrs?si=IsHWluee4F6T8JhT",
     videoUrl: null,
-    gallery: [],
+    gallery: [
+      "https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/experimental_setup.png",
+      "https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/silicone_mold.png",
+      "https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/hardware_components.png",
+      "https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/fixed_threshold_results.png"
+    ],
     
     blogContent: `
       <h3>Overview</h3>
       <p>PawTouch is a thigh-mounted, paw-shaped haptic interface designed to support smoother and more battery-aware electric-vehicle driving. It monitors accelerator and brake inputs in real time and provides gentle on-body haptic cues to encourage sustainable driving behavior.</p>
       
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/experimental_setup.png" alt="Experimental setup of PawTouch" width="80%">
+      
+      <h3>Interaction Scenario</h3>
+      <p>The following demonstration shows PawTouch delivering an on-body squeezing cue.</p>
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/pawtouch_actuation_demo.gif" alt="PawTouch on-body squeezing demonstration" width="60%">
+      
       <h3>System Design</h3>
       <p>PawTouch is covered with a custom-molded, 3 mm-thick silicone mitten that provides a soft, paw-like contact surface over the mechanical hand. A custom pedal module measures accelerator and brake inputs using potentiometers. Two ESP32 microcontrollers handle pedal sensing and feedback actuation, communicating via BLE.</p>
+      
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/silicone_mold.png" alt="Silicone mitten design" width="80%">
+      
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/hardware_components.png" alt="PawTouch hardware components" width="80%">
       
       <h3>User Study</h3>
       <p>PawTouch was evaluated with 18 participants using a stationary, video-guided aggressive-driving task. The primary fixed-threshold condition included 13 participants who completed baseline and feedback phases, while an exploratory personalized-threshold condition was conducted with 5 participants.</p>
@@ -84,7 +99,11 @@ const rawProjects = [
         <li>Participants perceived the tactile feedback as intuitive and non-intrusive</li>
       </ul>
       
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/fixed_threshold_results.png" alt="Fixed-threshold results" width="60%">
+      
       <h3>Research Impact</h3>
+      <p>In the fixed-threshold condition, PawTouch significantly reduced cumulative pedal-input severity and RMS pedal jerk, indicating lower input intensity and smoother pedal control. These early findings indicate that gentle on-body haptic cues may support smoother and more battery-aware EV driving.</p>
+      
       <p>This work demonstrates how haptic feedback can effectively modify driver behavior without cognitive overload, with potential applications beyond EVs in autonomous vehicle interfaces and general sustainable mobility.</p>
       
       <p><strong>Published at:</strong> 28th International Conference on Human-Computer Interaction (HCII 2026)</p>
@@ -104,7 +123,7 @@ const rawProjects = [
     team: "III",
     members: "Gyuhyun Jang, Yongmin Park, SoYoon Park",
     title: "Hand-driven Embodied Interface for Hybrid Origami Soft Robot",
-    desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper presents a[...]
+    desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper prese[...]
     keywords: ["Origami", "Soft Robot", "AI"],
     thumb: "./assets/2025/thumbnails/III-Thumbnail.gif",
     
@@ -120,13 +139,13 @@ const rawProjects = [
     
     blogContent: `
       <h3>Introduction to Origami Robotics</h3>
-      <p>Origami-based soft robots represent a breakthrough in robot design, offering exceptional flexibility and adaptability. However, their continuous and nonlinear deformation characteristics pres[...]
+      <p>Origami-based soft robots represent a breakthrough in robot design, offering exceptional flexibility and adaptability. However, their continuous and nonlinear deformation characteristics[...]
       
       <h3>Technical Challenge</h3>
-      <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and reduces c[...]
+      <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and redu[...]
       
       <h3>Our Innovation: Hand-Driven Interface</h3>
-      <p>We developed an embodied interface that tracks hand gestures and movements in 3D space, translating them directly to soft robot deformations in real-time. The interface learns user patterns t[...]
+      <p>We developed an embodied interface that tracks hand gestures and movements in 3D space, translating them directly to soft robot deformations in real-time. The interface learns user patte[...]
       
       <h3>Key Achievements</h3>
       <ul>
@@ -138,7 +157,7 @@ const rawProjects = [
       </ul>
       
       <h3>Applications & Future Work</h3>
-      <p>The hand-driven interface has potential applications in teleoperated medical procedures, rescue operations, and soft robotics research. Future work includes multi-hand control, force feedback[...]
+      <p>The hand-driven interface has potential applications in teleoperated medical procedures, rescue operations, and soft robotics research. Future work includes multi-hand control, force fee[...]
     `,
     
     materials: [
@@ -153,7 +172,7 @@ const rawProjects = [
     team: "LIMERO",
     members: "Seungmin Kang, Jihoon Kim, Junghyeon Cheon, Seoyoon Jang",
     title: "Physical Embodiment of Invisible Emotions: A Pneumatic-Based Breathing Soft Robotic Interface",
-    desc: "Emotions are often invisible, yet deeply influence human interaction and well-being. LIMERO is a pneumatic soft robot designed to physically embody and express emotional states through brea[...]
+    desc: "Emotions are often invisible, yet deeply influence human interaction and well-being. LIMERO is a pneumatic soft robot designed to physically embody and express emotional states through[...]
     keywords: ["Emotion", "Pneumatic", "Soft Robot"],
     thumb: "./assets/2025/thumbnails/LIMERO-Thumbnail.gif",
     
@@ -163,10 +182,10 @@ const rawProjects = [
     
     blogContent: `
       <h3>Bridging the Gap Between Emotion and Expression</h3>
-      <p>Emotions are fundamental to human experience, yet often difficult to articulate or share with others. LIMERO represents a novel approach to emotional expression by creating a physical, breath[...]
+      <p>Emotions are fundamental to human experience, yet often difficult to articulate or share with others. LIMERO represents a novel approach to emotional expression by creating a physical, b[...]
       
       <h3>Design Philosophy</h3>
-      <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. Anxiety causes shallow, rapid breathing; calm induces slow, deep breathing; exc[...]
+      <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. Anxiety causes shallow, rapid breathing; calm induces slow, deep breathing[...]
       
       <h3>Technical Features</h3>
       <ul>
@@ -196,7 +215,7 @@ const rawProjects = [
       </ul>
       
       <h3>Future Directions</h3>
-      <p>Upcoming work includes integration with wearable sensors for continuous emotion tracking, multi-robot synchronized interactions, and applications in group therapy settings. We are also explor[...]
+      <p>Upcoming work includes integration with wearable sensors for continuous emotion tracking, multi-robot synchronized interactions, and applications in group therapy settings. We are also e[...]
     `,
     
     materials: [
@@ -207,4 +226,4 @@ const rawProjects = [
 ];
 
 // Fallback image in case the GIF/JPG path is broken
-const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25[...]
+const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='[...]
