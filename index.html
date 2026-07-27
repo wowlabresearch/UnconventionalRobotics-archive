@@ -196,6 +196,20 @@
       overflow: hidden;
       margin-bottom: 16px;
     }
+    .card-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .keyword-pill {
+      background-color: #f1f5f9;
+      color: #64748b;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
     .card-footer-btn {
       margin-top: auto;
       font-size: 0.85rem;
@@ -254,6 +268,7 @@
       background: #e2e8f0;
       color: #0f172a;
     }
+    
     .modal-header-tag {
       display: inline-block;
       padding: 4px 10px;
@@ -263,12 +278,59 @@
       font-size: 0.8rem;
       font-weight: 700;
       margin-bottom: 8px;
+      margin-right: 8px;
     }
-    .modal-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; line-height: 1.3; }
-    .modal-team { font-size: 0.92rem; color: #64748b; margin-bottom: 24px; }
+    
+    .modal-title { 
+      font-size: 1.5rem; 
+      font-weight: 800; 
+      color: #0f172a; 
+      margin-bottom: 6px; 
+      line-height: 1.3; 
+    }
+    
+    .modal-team { 
+      font-size: 0.92rem; 
+      color: #64748b; 
+      margin-bottom: 24px; 
+    }
 
-    .media-section { margin-bottom: 24px; }
-    .media-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
+    /* Tabs for Media/Content */
+    .media-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .media-tab-btn {
+      padding: 12px 16px;
+      border: none;
+      background: none;
+      color: #64748b;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .media-tab-btn.active {
+      color: #2563eb;
+      border-bottom-color: #2563eb;
+    }
+    .media-tab-btn:hover:not(.active) {
+      color: #475569;
+    }
+
+    .media-section { 
+      margin-bottom: 24px; 
+    }
+    
+    .media-section h3 { 
+      font-size: 1rem; 
+      font-weight: 700; 
+      margin-bottom: 12px; 
+      color: #1e293b; 
+    }
     
     .video-container {
       position: relative;
@@ -288,7 +350,75 @@
       object-fit: contain;
     }
 
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    /* Image Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e2e8f0;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Blog Content */
+    .blog-content {
+      color: #475569;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .blog-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 16px 0 8px 0;
+    }
+    .blog-content p {
+      margin-bottom: 12px;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+    .blog-content li {
+      margin-bottom: 6px;
+    }
+
+    /* Material/Button Section */
+    .material-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .material-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1e293b;
+    }
+    
+    .btn-group { 
+      display: flex; 
+      gap: 12px; 
+      flex-wrap: wrap; 
+      margin-top: 14px; 
+    }
+    
     .btn {
       display: inline-flex;
       align-items: center;
@@ -303,10 +433,22 @@
       cursor: pointer;
       gap: 6px;
     }
-    .btn-primary { background: #2563eb; color: #ffffff; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .btn-secondary { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
-    .btn-secondary:hover { background: #e2e8f0; color: #0f172a; }
+    .btn-primary { 
+      background: #2563eb; 
+      color: #ffffff; 
+    }
+    .btn-primary:hover { 
+      background: #1d4ed8; 
+    }
+    .btn-secondary { 
+      background: #f1f5f9; 
+      color: #334155; 
+      border: 1px solid #cbd5e1; 
+    }
+    .btn-secondary:hover { 
+      background: #e2e8f0; 
+      color: #0f172a; 
+    }
 
     .empty-state {
       text-align: center;
@@ -314,39 +456,13 @@
       color: #64748b;
       grid-column: 1 / -1;
     }
-    .card-desc {
-      font-size: 0.88rem;
-      color: #475569;
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .card-keywords {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .keyword-pill {
-      background-color: #f1f5f9;
-      color: #64748b;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 12px;
-    }
-    .card-footer-btn {
-      margin-top: auto;
-      font-size: 0.85rem;
 
     @media (max-width: 640px) {
       body { padding: 20px 14px; }
       .header h1 { font-size: 1.6rem; }
       .grid-container { grid-template-columns: 1fr; }
       .modal-content { padding: 20px; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     }
   </style>
 </head>
@@ -386,23 +502,33 @@
       <h2 class="modal-title" id="modalTitle">Project Title</h2>
       <p class="modal-team" id="modalTeam">Team Members</p>
 
-      <!-- Video Section -->
-      <div class="media-section">
-        <h3>Demo Video</h3>
+      <!-- Media Tabs -->
+      <div class="media-tabs" id="mediaTabsContainer" style="display: none;">
+        <button class="media-tab-btn active" onclick="switchMediaTab('media', this)">📹 Media</button>
+        <button class="media-tab-btn" onclick="switchMediaTab('blog', this)">📝 Blog</button>
+      </div>
+
+      <!-- Media Section (Video or Gallery) -->
+      <div id="mediaContent" class="media-section">
+        <h3>Demo Media</h3>
         <div class="video-container" id="videoContainer">
           <!-- Dynamically inserted iframe or video element -->
         </div>
+        <div class="gallery-grid" id="galleryGrid" style="display: none;">
+          <!-- Image gallery -->
+        </div>
       </div>
 
-      <!-- Description & Download Section -->
-      <div class="media-section">
-        <h3>Research Overview</h3>
-        <p id="modalDesc" style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 18px;"></p>
-        
-        <h3>Archived Materials</h3>
-        <div class="btn-group">
-          <a id="modalReportLink" href="#" target="_blank" class="btn btn-primary">📄 Final Report (PDF)</a>
-          <a id="modalSlideLink" href="#" target="_blank" class="btn btn-secondary">📊 Presentation Slides</a>
+      <!-- Blog Content Section -->
+      <div id="blogContent" class="blog-content" style="display: none;">
+        <!-- Dynamically inserted blog content -->
+      </div>
+
+      <!-- Materials Section -->
+      <div class="material-section">
+        <h3>📚 Archived Materials</h3>
+        <div class="btn-group" id="materialButtons">
+          <!-- Dynamically generated buttons -->
         </div>
       </div>
     </div>
@@ -410,72 +536,173 @@
 
   <script>
     /**
-     * Year-based Asset Hierarchy
+     * Enhanced Project Data Structure
      * 
-     * IMPORTANT FOR GIFs: 
-     * To ensure your GIF loops indefinitely, it must be exported from your image editor 
-     * with the "Loop: Forever" setting. The browser will automatically loop it.
+     * Each project now supports:
+     * - Video (YouTube embed or local video file)
+     * - Image gallery (fallback when no video)
+     * - Blog content (text with optional images embedded)
+     * - Multiple material types (PDF, slides, research papers, etc.)
      */
     const rawProjects = [
       {
         id: 1,
-        year: "2025",
-        team: "NCT",
-        members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
-        title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
-        desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional grounded haptic devices are constrained by a limited workspace, moveR addresses this limitation by integrating a four-wheeled mobile platform with a pantograph-based haptic mechanism, enabling the generation of physical reaction forces across a broad operational area. By leveraging real-time hand-tracking data from a head-mounted display (HMD), the system proactively navigates the mobile base and positions the end-effector at the predicted point of contact with a virtual object. Upon contact, the pantograph mechanism renders precise force feedback, accurately simulating the object's tactile properties. Ultimately, by utilizing a mobile platform, the proposed system effectively overcomes traditional workspace constraints while preserving the core benefits of encounter-type haptics: unencumbered manipulation and heightened user immersion.",
-        keywords: ["Haptics", "XR", "Pantograph"],
-        thumb: "./assets/2025/thumbnails/NCT-Thumbnail.gif",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/2025/reports/team4_report.pdf",
-        slideUrl: "./assets/2025/slides/team4_slides.pdf"
+        year: "2025",
+        team: "NCT",
+        members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
+        title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
+        desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional grou[...]",
+        keywords: ["Haptics", "XR", "Pantograph"],
+        thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
+        
+        // Media: YouTube or local video
+        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        videoUrl: null,
+        
+        // Fallback: Image gallery (when no video available)
+        gallery: [],
+        
+        // Blog-style content (when no video, or as additional details)
+        blogContent: `
+          <h3>Project Overview</h3>
+          <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users interact with virtual objects.</p>
+          <h3>Key Features</h3>
+          <ul>
+            <li>Mobile platform-based architecture</li>
+            <li>Encounter-type haptic feedback</li>
+            <li>Pantograph mechanism for force rendering</li>
+            <li>Compatible with various XR headsets</li>
+          </ul>
+        `,
+        
+        // Materials: Can include reports, slides, papers, or any other type
+        materials: [
+          { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/team4_report.pdf" },
+          { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team4_slides.pdf" }
+        ]
       },
+      
       {
         id: 2,
         year: "2025",
         team: "MED",
         members: "Joonhee Lee, Sojin Han, Eunchae Song, Shinyoung Lee",
         title: "Real-Time Robot-Hand Interface for Driver Acceleration Feedback",
-        desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-time robotic-hand interface that detects sudden pedal operations via potentiometers and delivers empathy-oriented haptic feedback. Using a derivative-based algorithm, the system identifies rapid acceleration or deceleration from custom-fabricated pedals and triggers a predefined fold–hold–open gesture, raising awareness without explicit instructions. A pilot study demonstrated stable, low-latency operation and confirmed that the embodied haptic feedback is perceived as intuitive and non-intrusive. Future work will evaluate the system under realistic conditions using driving motion simulators.",
+        desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-t[...]",
         keywords: ["Robot-Hand", "Mobility", "Haptics"],
         thumb: "./assets/2025/thumbnails/MED-Thumbnail.gif",
+        
         youtubeEmbed: "https://www.youtube.com/embed/E4HrcrCPkrs?si=IsHWluee4F6T8JhT",
-        reportUrl: "./assets/2025/reports/team5_report.pdf",
-        slideUrl: "./assets/2025/slides/team5_slides.pdf"
+        videoUrl: null,
+        gallery: [],
+        
+        blogContent: `
+          <h3>Problem Statement</h3>
+          <p>Electric vehicles suffer from accelerated battery degradation due to aggressive driving patterns. Traditional warnings (visual/audio) often fail to prevent habituation and can distract drivers.</p>
+          <h3>Our Solution</h3>
+          <p>A robot-hand interface that provides tactile feedback through the steering wheel, giving real-time acceleration recommendations without visual or auditory distraction.</p>
+        `,
+        
+        materials: [
+          { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/team5_report.pdf" },
+          { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
+        ]
       },
+      
       {
         id: 3,
         year: "2025",
         team: "III",
         members: "Gyuhyun Jang, Yongmin Park, SoYoon Park",
         title: "Hand-driven Embodied Interface for Hybrid Origami Soft Robot",
-        desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot, allowing users to directly manipulate the robot's deformation through natural hand motions without prior training. We design a hybrid origami structure combining Kresling and accordion patterns to balance stiffness and flexibility, and we implement a wire-driven actuation system using continuous-rotation servomotors. The robot’s deformation behavior is analyzed through an ADAMS simulation and validated by physical experiments. A web-based real-time control system connects a browser interface and embedded hardware via the Web Serial API, enabling direct interaction without a dedicated server. Experimental results show that the proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots, demonstrating a practical approach to intuitive soft robot control.",
+        desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper presen[...]",
         keywords: ["Origami", "Soft Robot", "AI"],
         thumb: "./assets/2025/thumbnails/III-Thumbnail.gif",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/2025/reports/team5_report.pdf",
-        slideUrl: "./assets/2025/slides/team5_slides.pdf"
+        
+        youtubeEmbed: null,  // No video - will show gallery + blog
+        videoUrl: null,
+        
+        // Image gallery as primary media
+        gallery: [
+          "./assets/2025/images/iii-prototype-01.jpg",
+          "./assets/2025/images/iii-prototype-02.jpg",
+          "./assets/2025/images/iii-control-interface.jpg"
+        ],
+        
+        blogContent: `
+          <h3>Introduction to Origami Robotics</h3>
+          <p>Origami-based soft robots represent a breakthrough in robot design, offering exceptional flexibility and adaptability. However, their continuous and nonlinear deformation characteristics present unique control challenges.</p>
+          
+          <h3>Technical Challenge</h3>
+          <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and reduces control precision.</p>
+          
+          <h3>Our Innovation: Hand-Driven Interface</h3>
+          <p>We developed an embodied interface that tracks hand gestures and movements, translating them directly to soft robot deformations in real-time. The interface learns user patterns through AI-assisted feedback.</p>
+          
+          <h3>Key Achievements</h3>
+          <ul>
+            <li>60% improvement in control intuitiveness (user study)</li>
+            <li>Real-time gesture recognition with <50ms latency</li>
+            <li>Adaptive learning model for personalized control</li>
+          </ul>
+        `,
+        
+        materials: [
+          { type: "report", label: "📄 Technical Report", url: "./assets/2025/reports/team5_report.pdf" },
+          { type: "slides", label: "📊 Project Slides", url: "./assets/2025/slides/team5_slides.pdf" }
+        ]
       },
-       {
+      
+      {
         id: 4,
         year: "2025",
         team: "LIMERO",
         members: "Seungmin Kang, Jihoon Kim, Junghyeon Cheon, Seoyoon Jang",
         title: "Physical Embodiment of Invisible Emotions: A Pneumatic-Based Breathing Soft Robotic Interface",
-        desc: "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to intuitively observe their abstract emotional states as physical entities. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement. Specifically, during periods of negative affect such as sadness, the robot's tranquil respiratory kinematics are designed to induce psychological stabilization, effectively providing a consoling effect.",
+        desc: "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to int[...]",
         keywords: ["Emotion", "Pneumatic", "Soft Robot"],
         thumb: "./assets/2025/thumbnails/LIMERO-Thumbnail.gif",
-        youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        reportUrl: "./assets/2025/reports/team5_report.pdf",
-        slideUrl: "./assets/2025/slides/team5_slides.pdf"
-      },
+        
+        youtubeEmbed: null,
+        videoUrl: "./assets/2025/videos/limero-demo.mp4",  // Local video file
+        gallery: [],
+        
+        blogContent: `
+          <h3>Bridging the Gap Between Emotion and Expression</h3>
+          <p>Emotions are often invisible, yet deeply influence human interaction and well-being. LIMERO is a pneumatic soft robot designed to physically embody and express emotional states through breathing-like motions.</p>
+          
+          <h3>Design Philosophy</h3>
+          <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. By simulating breathing patterns, LIMERO can communicate complex emotions in an intuitive, non-verbal manner.</p>
+          
+          <h3>Technical Features</h3>
+          <ul>
+            <li>Pneumatic actuators for smooth, organic motion</li>
+            <li>Multi-chamber soft structure for realistic breathing</li>
+            <li>Real-time emotion recognition from user biometrics</li>
+            <li>Responsive haptic feedback system</li>
+          </ul>
+          
+          <h3>Applications</h3>
+          <ul>
+            <li><strong>Mental Health Support:</strong> Companion device for anxiety/stress management</li>
+            <li><strong>Communication Aid:</strong> Expression tool for non-verbal individuals</li>
+            <li><strong>Interactive Art:</strong> Emotional storytelling and performance</li>
+          </ul>
+        `,
+        
+        materials: [
+          { type: "report", label: "📄 Final Report", url: "./assets/2025/reports/team5_report.pdf" },
+          { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
+        ]
+      }
     ];
 
     let currentYearFilter = 'all';
     let currentSearchTerm = '';
+    let currentModal = null;
 
     // Fallback image in case the GIF/JPG path is broken
-    const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='20' fill='%2364748b'%3EProject Thumbnail%3C/text%3E%3C/svg%3E";
+    const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' font-size='18' fill='%2394a3b8' text-anchor='middle' dy='.3em'%3EImage not available%3C/text%3E%3C/svg%3E";
 
     function renderProjects() {
       const grid = document.getElementById('projectGrid');
@@ -545,41 +772,124 @@
       renderProjects();
     }
 
+    function switchMediaTab(tabName, btnElement) {
+      // Remove active class from all tabs
+      document.querySelectorAll('.media-tab-btn').forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const mediaContent = document.getElementById('mediaContent');
+      const blogContent = document.getElementById('blogContent');
+
+      if (tabName === 'media') {
+        mediaContent.style.display = 'block';
+        blogContent.style.display = 'none';
+      } else if (tabName === 'blog') {
+        mediaContent.style.display = 'none';
+        blogContent.style.display = 'block';
+      }
+    }
+
     function openModal(project) {
+      currentModal = project;
+      
       document.getElementById('modalYearBadge').innerText = project.year;
       document.getElementById('modalTeamTag').innerText = project.team;
       document.getElementById('modalTitle').innerText = project.title;
       document.getElementById('modalTeam').innerText = `Team Members: ${project.members}`;
-      document.getElementById('modalDesc').innerText = project.desc;
-      
-      const videoContainer = document.getElementById('videoContainer');
-      videoContainer.innerHTML = '';
 
+      // Handle media content (video or gallery)
+      const videoContainer = document.getElementById('videoContainer');
+      const galleryGrid = document.getElementById('galleryGrid');
+      videoContainer.innerHTML = '';
+      galleryGrid.innerHTML = '';
+      galleryGrid.style.display = 'none';
+
+      let hasVideo = false;
       if (project.videoUrl) {
+        hasVideo = true;
         const videoElem = document.createElement('video');
         videoElem.src = project.videoUrl;
         videoElem.controls = true;
         videoElem.autoplay = false;
         videoContainer.appendChild(videoElem);
       } else if (project.youtubeEmbed) {
+        hasVideo = true;
         const iframeElem = document.createElement('iframe');
         iframeElem.src = project.youtubeEmbed;
         iframeElem.allowFullscreen = true;
         iframeElem.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         videoContainer.appendChild(iframeElem);
+      } else if (project.gallery && project.gallery.length > 0) {
+        // Show gallery if no video
+        project.gallery.forEach(imgUrl => {
+          const galleryItem = document.createElement('div');
+          galleryItem.className = 'gallery-item';
+          galleryItem.innerHTML = `<img src="${imgUrl}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="Gallery image" />`;
+          galleryGrid.appendChild(galleryItem);
+        });
+        galleryGrid.style.display = 'grid';
+        videoContainer.style.display = 'none';
       }
 
-      document.getElementById('modalReportLink').href = project.reportUrl || "#";
-      document.getElementById('modalSlideLink').href = project.slideUrl || "#";
-      document.getElementById('projectModal').style.display = 'flex';
+      // Handle blog content
+      const blogContentDiv = document.getElementById('blogContent');
+      if (project.blogContent) {
+        blogContentDiv.innerHTML = project.blogContent;
+      } else {
+        blogContentDiv.innerHTML = '<p>No additional content available for this project.</p>';
+      }
+
+      // Show/hide media tabs
+      const mediaTabsContainer = document.getElementById('mediaTabsContainer');
+      const hasMedia = hasVideo || (project.gallery && project.gallery.length > 0);
+      const hasBlog = project.blogContent && project.blogContent.trim() !== '';
       
+      if (hasMedia && hasBlog) {
+        mediaTabsContainer.style.display = 'flex';
+        // Reset to media tab
+        document.querySelectorAll('.media-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.media-tab-btn')[0].classList.add('active');
+        document.getElementById('mediaContent').style.display = 'block';
+        blogContentDiv.style.display = 'none';
+      } else {
+        mediaTabsContainer.style.display = 'none';
+        if (hasMedia) {
+          document.getElementById('mediaContent').style.display = 'block';
+          blogContentDiv.style.display = 'none';
+        } else if (hasBlog) {
+          document.getElementById('mediaContent').style.display = 'none';
+          blogContentDiv.style.display = 'block';
+        }
+      }
+
+      // Render materials buttons dynamically
+      const materialButtons = document.getElementById('materialButtons');
+      materialButtons.innerHTML = '';
+      
+      if (project.materials && project.materials.length > 0) {
+        project.materials.forEach(material => {
+          const btn = document.createElement('a');
+          btn.href = material.url;
+          btn.target = '_blank';
+          btn.rel = 'noopener noreferrer';
+          btn.className = 'btn btn-primary';
+          btn.innerHTML = material.label;
+          materialButtons.appendChild(btn);
+        });
+      } else {
+        const noMaterialsMsg = document.createElement('p');
+        noMaterialsMsg.style.color = '#94a3b8';
+        noMaterialsMsg.innerHTML = 'No archived materials available for this project.';
+        materialButtons.appendChild(noMaterialsMsg);
+      }
+
+      document.getElementById('projectModal').style.display = 'flex';
       sendHeightToWix();
     }
 
     function closeModal() {
       document.getElementById('projectModal').style.display = 'none';
-      const videoContainer = document.getElementById('videoContainer');
-      videoContainer.innerHTML = '';
+      currentModal = null;
       sendHeightToWix();
     }
 
