@@ -10,8 +10,8 @@ const rawProjects = [
     team: "NCT",
     members: "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
     title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
-    desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional grounded haptic devices are constrained by a limited workspace, moveR addresses this limitation by integrating a four-wheeled mobile platform with a pantograph-based haptic mechanism, enabling the generation of physical reaction forces across a broad operational area. By leveraging real-time hand-tracking data from a head-mounted display (HMD), the system proactively navigates the mobile base and positions the end-effector at the predicted point of contact with a virtual object. Upon contact, the pantograph mechanism renders precise force feedback, accurately simulating the object's tactile properties. Ultimately, by utilizing a mobile platform, the proposed system effectively overcomes traditional workspace constraints while preserving the core benefits of encounter-type haptics: unencumbered manipulation and heightened user immersion.",
-    keywords: ["Haptics", "XR", "Pantograph"],
+    desc: "This study proposes a mobile platform-based Encounter-type haptic system, named 'moveR', designed to provide reaction force feedback from virtual objects to the user[cite: 3]. While conventional fixed haptic devices suffer from limited workspace, moveR overcomes this limitation by combining a four-wheeled mobile platform with a pantograph-based haptic mechanism[cite: 3]. The system tracks the user's hand position in real time using hand-tracking data from a head-mounted display (HMD) and proactively moves the mobile platform toward predicted contact points[cite: 3].",
+    keywords: ["Haptic Feedback", "Virtual Reality", "Mobile Robot", "Pantograph"],
     thumb: "./assets/2025/thumbnails/NCT-Thumbnail.gif",
     
     // Media: YouTube or local video
@@ -24,21 +24,20 @@ const rawProjects = [
     // Blog-style content (when no video, or as additional details)
     blogContent: `
       <h3>Project Overview</h3>
-      <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users interact with virtual objects.</p>
-      <h3>Key Features</h3>
+      <p>Haptic feedback has long been regarded as a crucial element for immersive interaction in virtual reality (VR) environments[cite: 3]. The proposed moveR system addresses the limitations of existing haptic systems, such as restricted workspace and device weight, by mounting a pantograph mechanism on a mobile platform[cite: 3]. This Encounter-type haptic design completely eliminates the physical burden on the user by providing contact only when needed[cite: 3].</p>
+      
+      <h3>Hardware Implementation</h3>
       <ul>
-        <li>Mobile platform-based architecture for dynamic spatial feedback</li>
-        <li>Encounter-type haptic feedback system</li>
-        <li>Pantograph mechanism for precise force rendering</li>
-        <li>Compatible with various XR headsets</li>
-        <li>Real-time motion tracking and response</li>
+        <li><strong>Mobile Platform:</strong> The platform is designed based on a mecanum-wheel structure that enables omnidirectional movement[cite: 3]. It utilizes four DC motors controlled by an ESP32 microcontroller, while a VR controller mounted on the platform tracks its position[cite: 3].</li>
+        <li><strong>Pantograph Device:</strong> The system is based on a two-degree-of-freedom planar linkage mechanism driven by two Dynamixel XM430 motors[cite: 3].</li>
+        <li><strong>Contact Sensor:</strong> The surface of the end-effector is wrapped with a copper plate connected to an ESP32 via Bluetooth to detect physical contact[cite: 3].</li>
       </ul>
-      <h3>Technical Specifications</h3>
+      
+      <h3>Software & Control Algorithms</h3>
       <ul>
-        <li>Workspace: 0.5m x 0.5m</li>
-        <li>Force range: 0-30N</li>
-        <li>Update frequency: 1000 Hz</li>
-        <li>Latency: &lt;20ms</li>
+        <li><strong>Contact Surface Prediction:</strong> The system defines a virtual sphere around a target point located on the user's palm to identify interactable objects and computes the minimum distance to select the contact candidate[cite: 3].</li>
+        <li><strong>State-Based Motion Strategy:</strong> When the end-effector is in a non-contact state, the platform tracks the user's hand; once contact is detected, the automatic following motion is suspended to prevent interaction instability[cite: 3].</li>
+        <li><strong>Haptic Rendering:</strong> Inspired by the Finger Proxy algorithm, the system calculates a resistive force using a linear spring model, $F=kx$, where $k$ denotes the stiffness parameter reflecting the material properties of the virtual object and $x$ denotes the penetration depth[cite: 3].</li>
       </ul>
     `,
     
@@ -124,14 +123,13 @@ const rawProjects = [
     team: "III",
     members: "Gyuhyun Jang, Yongmin Park, SoYoon Park",
     title: "Hand-driven Embodied Interface for Hybrid Origami Soft Robot",
-    desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, making intuitive and stable control challenging when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot that allows users to directly manipulate the robot's deformation through natural hand motions without prior training. To balance stiffness and flexibility, we designed a hybrid origami structure combining Kresling and accordion patterns, actuated by a wire-driven system utilizing continuous-rotation servomotors. The robot’s deformation behavior was analyzed through ADAMS simulations and validated via physical experiments. Furthermore, a web-based, real-time control system connects a browser interface to the embedded hardware via the Web Serial API, enabling direct interaction without the need for a dedicated server. Experimental results indicate that the proposed embodied interface effectively bridges human hand motion with the continuous deformation of origami soft robots, demonstrating a practical approach to intuitive soft robot control.",
-    keywords: ["Origami", "Soft Robot", "AI"],
+    desc: "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices[cite: 2]. This paper presents a hand-driven embodied interface for a hybrid origami soft robot, allowing users to directly manipulate robot deformation through natural hand motions without prior training[cite: 2]. We design a hybrid origami structure combining Kresling and accordion patterns to balance stiffness and flexibility, and implement a wire-driven actuation system using continuous-rotation servomotors[cite: 2]. A web-based real-time control system connects a browser interface and embedded hardware via the Web Serial API, enabling direct interaction without a dedicated server[cite: 2].",
+    keywords: ["Origami", "Soft Robot", "Embodied Interface", "Wire-driven"],
     thumb: "./assets/2025/thumbnails/III-Thumbnail.gif",
     
-    youtubeEmbed: null,  // No video - will show gallery + blog
+    youtubeEmbed: null,  
     videoUrl: null,
     
-    // Image gallery as primary media
     gallery: [
       "./assets/2025/images/iii-prototype-01.jpg",
       "./assets/2025/images/iii-prototype-02.jpg",
@@ -139,31 +137,32 @@ const rawProjects = [
     ],
     
     blogContent: `
-      <h3>Introduction to Origami Robotics</h3>
-      <p>Origami-based soft robots exhibit continuous and nonlinear deformation, making intuitive and stable control challenging when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot that allows users to directly manipulate the robot's deformation through natural hand motions without prior training.</p>
+      <h3>Project Overview</h3>
+      <p>Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices[cite: 2]. To address this gap, we present a hand-driven embodied interface allowing users to directly manipulate robot deformation through natural hand motions without prior training[cite: 2].</p>
       
-      <h3>Technical Challenge</h3>
-      <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and reduces operational efficiency.</p>
-      
-      <h3>Our Innovation: Hand-Driven Interface</h3>
-      <p>We developed an embodied interface that tracks hand gestures and movements in 3D space, translating them directly to soft robot deformations in real-time. The interface learns user patterns for better mapping.</p>
-      
-      <h3>Key Achievements</h3>
+      <h3>Hardware Design</h3>
+      <p>The robot features a hybrid origami architecture fabricated from Sierra 210 paper, chosen for its balance of elasticity and thickness[cite: 2].</p>
       <ul>
-        <li>60% improvement in control intuitiveness (user study with 30 participants)</li>
-        <li>35% faster task completion compared to joystick control</li>
-        <li>Real-time gesture recognition with &lt;50ms latency</li>
-        <li>Adaptive learning model that improves over multiple sessions</li>
-        <li>95% accuracy in gesture classification after 20 minutes of training</li>
+        <li><strong>Hybrid Structure:</strong> The body integrates the Kresling pattern, which provides torsional stiffness and load-bearing capability, with the accordion pattern, which contributes large axial deformation and compliance[cite: 2].</li>
+        <li><strong>Actuation System:</strong> A wire-driven actuation system was implemented by routing tension cables to eight MG996R continuous-rotation servomotors, generating complex bending and twisting motions[cite: 2].</li>
       </ul>
       
-      <h3>Applications & Future Work</h3>
-      <p>The hand-driven interface has potential applications in teleoperated medical procedures, rescue operations, and soft robotics research. Future work includes multi-hand control and force feedback integration.</p>
+      <h3>Control System & AI Integration</h3>
+      <p>To enable intuitive interaction, we implemented a lightweight web-based real-time control system[cite: 2].</p>
+      <ul>
+        <li><strong>Browser-Based Pipeline:</strong> The user interface operates entirely within a web browser, utilizing p5.js for 3D simulation and ml5.js for vision-based hand tracking[cite: 2].</li>
+        <li><strong>Direct Communication:</strong> The browser connects directly to an ESP32 microcontroller via the Web Serial API, enabling low-latency data exchange without requiring a dedicated server[cite: 2].</li>
+        <li><strong>Control Strategy Evolution:</strong> To balance stability and intuitiveness in an open-loop system, we explored multiple strategies ranging from proportional hand mapping to threshold-based binary control[cite: 2].</li>
+        <li><strong>AI-based Inverse Kinematics:</strong> We ultimately explored a multilayer perceptron (MLP) neural network approach that predicts the required actuator commands based on user-specified 3D target positions[cite: 2].</li>
+      </ul>
+      
+      <h3>Research Results</h3>
+      <p>The proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots[cite: 2]. By framing soft robot control as an interaction problem, this work demonstrates a practical approach for intuitive manipulation while highlighting the fundamental trade-offs between intuitiveness and stability under open-loop actuation[cite: 2].</p>
     `,
     
     materials: [
-      { type: "report", label: "📄 Technical Report", url: "./assets/2025/reports/team5_report.pdf" },
-      { type: "slides", label: "📊 Project Slides", url: "./assets/2025/slides/team5_slides.pdf" }
+      { type: "report", label: "📄 Technical Report (PDF)", url: "./assets/2025/reports/Hand-driven Embodied Interface for Hybrid Origami Soft Robot.pdf" },
+      { type: "slides", label: "📊 Project Slides", url: "./assets/2025/slides/team3_slides.pdf" }
     ]
   },
   
@@ -171,56 +170,44 @@ const rawProjects = [
     id: 4,
     year: "2025",
     team: "LIMERO",
-    members: "Seungmin Kang, Jihoon Kim, Junghyeon Cheon, Seoyoon Jang",
+    members: "Seungmin Kang, Jihoon Kim, Seoyoon Jang, Junghyeon Cheon",
     title: "Physical Embodiment of Invisible Emotions: A Pneumatic-Based Breathing Soft Robotic Interface",
-    desc: "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to intuitively observe their abstract emotional states as physical entities. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement. Specifically, during periods of negative affect such as sadness, the robot's tranquil respiratory kinematics are designed to induce psychological stabilization, effectively providing a consoling effect.",
-    keywords: ["Emotion", "Pneumatic", "Soft Robot"],
+    desc: "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction[cite: 1]. This enables users to intuitively observe their abstract emotional states as physical entities[cite: 1]. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor[cite: 1]. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement[cite: 1].",
+    keywords: ["Emotion", "Pneumatic", "Soft Robot", "Haptic Interface"],
     thumb: "./assets/2025/thumbnails/LIMERO-Thumbnail.gif",
     
     youtubeEmbed: null,
-    videoUrl: "./assets/2025/videos/limero-demo.mp4",  // Local video file
+    videoUrl: "./assets/2025/videos/limero-demo.mp4",  
     gallery: [],
     
     blogContent: `
-      <h3>Bridging the Gap Between Emotion and Expression</h3>
-      <p>Emotions are fundamental to human experience, yet often difficult to articulate or share with others. LIMERO represents a novel approach to emotional expression by creating a physical, breathing interface.</p>
+      <h3>Project Overview</h3>
+      <p>Recent advancements in affective computing have enabled relatively precise user emotion recognition, but the feedback is primarily limited to screen-based visualizations such as graphs or numerical values[cite: 1]. These static and rational expressions fail to convey the dynamic and abstract nature of human emotions, which limits their ability to provide immediate emotional support[cite: 1].</p>
+      <p>To overcome this limitation, we propose a soft robotic interface that 'physicalizes' invisible emotion data into a tangible form[cite: 1]. Inspired by the natural mechanism of respiration, this system utilizes pneumatic actuation to simulate rhythmic expansion and contraction, aiming to elicit deep emotional engagement[cite: 1].</p>
       
-      <h3>Design Philosophy</h3>
-      <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. Anxiety causes shallow, rapid breathing; calm induces slow, deep breathing.</p>
-      
-      <h3>Technical Features</h3>
+      <h3>Hardware Design & Mechanism</h3>
+      <p>The system adopts a high-density, 3-layer structure to minimize component interference while maintaining a compact, handheld size[cite: 1].</p>
       <ul>
-        <li>Multi-chamber pneumatic soft structure for realistic breathing motion</li>
-        <li>Real-time emotion recognition from user biometrics (heart rate, respiration, skin conductance)</li>
-        <li>Responsive haptic feedback synchronized with emotional patterns</li>
-        <li>Low-noise operation (&lt;45dB) suitable for intimate settings</li>
-        <li>Machine learning model trained on 10,000+ breathing pattern samples</li>
-        <li>Customizable emotional expression modes for personalized interaction</li>
+        <li><strong>Base Layer (1st Layer):</strong> This layer directly contacts the user's palm and features an ergonomic curved design to reduce fatigue during use[cite: 1].</li>
+        <li><strong>Air Flow Layers (2nd & 3rd Layers):</strong> The routing for the body and tail tubes is separated to prevent airflow blockage and enable independent control[cite: 1].</li>
+        <li><strong>Actuation Module:</strong> The system mimics biological breathing using a single air pump and three solenoid valves, while a bilateral hinge structure ensures stable, twist-free expansion[cite: 1].</li>
+        <li><strong>Tail Chamber Fabrication:</strong> Made from soft Thermoplastic Polyurethane (TPU) film via heat sealing, it features a rhombus-shaped vacuum chamber that allows for clear bending motions even at low air pressures[cite: 1].</li>
       </ul>
       
-      <h3>Applications</h3>
+      <h3>Pneumatic Control & Software Architecture</h3>
+      <p>The control module is driven by an ESP32, which continuously regulates airflow and velocity using 8-bit PWM signals[cite: 1].</p>
       <ul>
-        <li><strong>Mental Health Support:</strong> Companion device for anxiety, stress management, and emotional regulation</li>
-        <li><strong>Communication Aid:</strong> Expression tool for non-verbal individuals or those with speech difficulties</li>
-        <li><strong>Interactive Art:</strong> Emotional storytelling, performance art, and exhibition installations</li>
-        <li><strong>Social Robotics:</strong> Companion for elderly or isolated individuals</li>
-        <li><strong>Therapeutic Intervention:</strong> Support tool in counseling and psychological treatment</li>
+        <li><strong>AI Emotion Recognition (Backend):</strong> Utilizing a fine-tuned YOLOv11 model in a Python Flask environment, the system infers five user emotions (Happy, Sad, Angry, Fearful, Neutral) in real-time[cite: 1].</li>
+        <li><strong>Frontend Visualization:</strong> Through Socket.IO communication and Chart.js, the system visualizes real-time emotional trends and dynamically changes the color of the robot's 'Aura' effect[cite: 1].</li>
+        <li><strong>Multimodal Haptic Interaction:</strong> For example, upon receiving a 'Happy' signal, the robot inflates and moves its tail rapidly; in a 'Neutral' state, it generates a 60 BPM heartbeat vibration pattern to vividly express a lifelike idle state[cite: 1].</li>
       </ul>
       
-      <h3>Research Findings</h3>
-      <ul>
-        <li>87% of users reported feeling more emotionally connected and supported</li>
-        <li>Average stress reduction: 35% during 10-minute interaction sessions</li>
-        <li>User engagement remained high even after multiple sessions</li>
-        <li>Positive feedback from both clinical and non-clinical populations</li>
-      </ul>
-      
-      <h3>Future Directions</h3>
-      <p>Upcoming work includes integration with wearable sensors for continuous emotion tracking, multi-robot synchronized interactions, and applications in group therapy settings.</p>
+      <h3>Research Results</h3>
+      <p>The implemented prototype stably performed multimodal interactions, seamlessly synchronizing the robot's inflation, tail movement, and vibration patterns based on emotion recognition results[cite: 1]. Notably, during negative emotional states such as sadness or tension, the robot's calm breathing motion successfully shifted the user's attention from visual information to a tactile and physical experience[cite: 1]. This demonstrated positive potential for providing psychological stabilization and profound empathy[cite: 1].</p>
     `,
     
     materials: [
-      { type: "report", label: "📄 Final Report", url: "./assets/2025/reports/team5_report.pdf" },
+      { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/Final Report_LIMERO.pdf" },
       { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
     ]
   }
