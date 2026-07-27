@@ -82,7 +82,7 @@ const rawProjects = [
     `,
     
     materials: [
-      { type: "report", label: "📄 Publication (PDF)", url: "./assets/2025/pdf/MED-paper.pdf" },
+      { type: "report", label: "📄 Publication (PDF)", url: "./assets/2025/paper/MED-paper.pdf" },
       { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
     ]
   },
