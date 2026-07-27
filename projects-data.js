@@ -77,10 +77,12 @@ const rawProjects = [
       </ul>
       <h3>Research Impact</h3>
       <p>This work demonstrates how haptic feedback can effectively modify driver behavior without cognitive overload, with potential applications beyond EVs in autonomous vehicle interfaces and general fleet management systems.</p>
+      <p>This work is published at 28th International Conference on Human-Computer Interaction (HCII'26 Posters) </p>
+
     `,
     
     materials: [
-      { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/team5_report.pdf" },
+      { type: "report", label: "📄 Publication (PDF)", url: "./assets/2025/pdf/MED-paper.pdf" },
       { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
     ]
   },
