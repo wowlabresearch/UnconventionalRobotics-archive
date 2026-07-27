@@ -83,29 +83,8 @@ function handleSearch() {
 }
 
 /**
- * Switch between Media and Blog tabs
- */
-function switchMediaTab(tabName, btnElement) {
-  // Update button states
-  document.querySelectorAll('.media-tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  btnElement.classList.add('active');
-
-  // Show/hide content based on selected tab
-  if (tabName === 'media') {
-    document.getElementById('mediaContent').style.display = 'block';
-    document.getElementById('blogContent').style.display = 'none';
-  } else if (tabName === 'blog') {
-    document.getElementById('mediaContent').style.display = 'none';
-    document.getElementById('blogContent').style.display = 'block';
-  }
-
-  sendHeightToWix();
-}
-
-/**
  * Open project detail modal
+ * (Modified to show both Media and Blog content simultaneously without tabs)
  */
 function openModal(project) {
   // Set header information
@@ -120,6 +99,8 @@ function openModal(project) {
   // Setup media content (video or gallery)
   const videoContainer = document.getElementById('videoContainer');
   const galleryGrid = document.getElementById('galleryGrid');
+  const mediaContentSection = document.getElementById('mediaContent');
+  
   videoContainer.innerHTML = '';
   galleryGrid.innerHTML = '';
   galleryGrid.style.display = 'none';
@@ -158,24 +139,27 @@ function openModal(project) {
     hasMedia = true;
   }
 
+  // Show or hide the entire Media section depending on content availability
+  if (hasMedia) {
+    mediaContentSection.style.display = 'block';
+  } else {
+    mediaContentSection.style.display = 'none'; // 미디어가 아예 없으면 미디어 영역 숨김
+  }
+
   // Setup blog content
   const blogContent = document.getElementById('blogContent');
   if (project.blogContent) {
     blogContent.innerHTML = project.blogContent;
+    blogContent.style.display = 'block'; // 블로그 내용 항상 보이기
   } else {
-    blogContent.innerHTML = '<p>No additional content available for this project.</p>';
+    blogContent.innerHTML = '';
+    blogContent.style.display = 'none'; // 내용이 없으면 숨김
   }
 
-  // Show/hide media tabs
+  // Hide the old tab buttons if they still exist in HTML
   const mediaTabsContainer = document.getElementById('mediaTabsContainer');
-  if (hasMedia && project.blogContent) {
-    mediaTabsContainer.style.display = 'flex';
-    // Reset to media tab
-    document.querySelector('.media-tab-btn').click();
-  } else {
+  if (mediaTabsContainer) {
     mediaTabsContainer.style.display = 'none';
-    document.getElementById('mediaContent').style.display = 'block';
-    document.getElementById('blogContent').style.display = 'none';
   }
 
   // Setup material buttons
@@ -197,6 +181,10 @@ function openModal(project) {
 
   // Show modal
   document.getElementById('projectModal').style.display = 'flex';
+  
+  // 모달을 열 때마다 스크롤을 맨 위로 올려줍니다.
+  document.querySelector('.modal-content').scrollTop = 0;
+  
   sendHeightToWix();
 }
 
@@ -206,7 +194,7 @@ function openModal(project) {
 function closeModal() {
   document.getElementById('projectModal').style.display = 'none';
   const videoContainer = document.getElementById('videoContainer');
-  videoContainer.innerHTML = '';
+  videoContainer.innerHTML = ''; // 모달이 닫히면 영상 끄기
   sendHeightToWix();
 }
 
