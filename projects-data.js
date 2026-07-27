@@ -24,7 +24,7 @@ const rawProjects = [
     // Blog-style content (when no video, or as additional details)
     blogContent: `
       <h3>Project Overview</h3>
-      <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users inte[...]
+      <p>moveR represents an innovative approach to haptic feedback in extended reality environments. The system utilizes a pantograph mechanism to provide realistic force feedback when users interact with virtual objects.</p>
       <h3>Key Features</h3>
       <ul>
         <li>Mobile platform-based architecture for dynamic spatial feedback</li>
@@ -55,7 +55,7 @@ const rawProjects = [
     team: "MED",
     members: "Joonhee Lee, Sojin Han, Eunchae Song, Shinyoung Lee",
     title: "Real-Time Robot-Hand Interface for Driver Acceleration Feedback",
-    desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-tAggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-time robotic-hand interface that detects sudden pedal operations via potentiometers and delivers empathy-oriented haptic feedback. Using a derivative-based algorithm, the system identifies rapid acceleration or deceleration from custom-fabricated pedals and triggers a predefined fold–hold–open gesture, raising awareness without explicit instructions. A pilot study demonstrated stable, low-latency operation and confirmed that the embodied haptic feedback is perceived as intuitive and non-intrusive. Future work will evaluate the system under realistic conditions using driving motion simulators.",
+    desc: "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-time robotic-hand interface that detects sudden pedal operations via potentiometers and delivers empathy-oriented haptic feedback. Using a derivative-based algorithm, the system identifies rapid acceleration or deceleration from custom-fabricated pedals and triggers a predefined fold–hold–open gesture, raising awareness without explicit instructions. A pilot study demonstrated stable, low-latency operation and confirmed that the embodied haptic feedback is perceived as intuitive and non-intrusive. Future work will evaluate the system under realistic conditions using driving motion simulators.",
     keywords: ["Robot-Hand", "Mobility", "Haptics"],
     thumb: "./assets/2025/thumbnails/MED-Thumbnail.gif",
     
@@ -139,13 +139,13 @@ const rawProjects = [
     
     blogContent: `
       <h3>Introduction to Origami Robotics</h3>
-      <p>Origami-based soft robots exhibit continuous and nonlinear deformation, making intuitive and stable control challenging when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot that allows users to directly manipulate the robot's deformation through natural hand motions without prior training. To balance stiffness and flexibility, we designed a hybrid origami structure combining Kresling and accordion patterns, actuated by a wire-driven system utilizing continuous-rotation servomotors. The robot’s deformation behavior was analyzed through ADAMS simulations and validated via physical experiments. Furthermore, a web-based, real-time control system connects a browser interface to the embedded hardware via the Web Serial API, enabling direct interaction without the need for a dedicated server. Experimental results indicate that the proposed embodied interface effectively bridges human hand motion with the continuous deformation of origami soft robots, demonstrating a practical approach to intuitive soft robot control.
+      <p>Origami-based soft robots exhibit continuous and nonlinear deformation, making intuitive and stable control challenging when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot that allows users to directly manipulate the robot's deformation through natural hand motions without prior training.</p>
       
       <h3>Technical Challenge</h3>
-      <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and redu[...]
+      <p>Traditional rigid input devices (keyboards, joysticks, controllers) fail to intuitively map to the fluid motion of origami robots. This disconnect creates a steep learning curve and reduces operational efficiency.</p>
       
       <h3>Our Innovation: Hand-Driven Interface</h3>
-      <p>We developed an embodied interface that tracks hand gestures and movements in 3D space, translating them directly to soft robot deformations in real-time. The interface learns user patte[...]
+      <p>We developed an embodied interface that tracks hand gestures and movements in 3D space, translating them directly to soft robot deformations in real-time. The interface learns user patterns for better mapping.</p>
       
       <h3>Key Achievements</h3>
       <ul>
@@ -157,7 +157,7 @@ const rawProjects = [
       </ul>
       
       <h3>Applications & Future Work</h3>
-      <p>The hand-driven interface has potential applications in teleoperated medical procedures, rescue operations, and soft robotics research. Future work includes multi-hand control, force fee[...]
+      <p>The hand-driven interface has potential applications in teleoperated medical procedures, rescue operations, and soft robotics research. Future work includes multi-hand control and force feedback integration.</p>
     `,
     
     materials: [
@@ -182,10 +182,10 @@ const rawProjects = [
     
     blogContent: `
       <h3>Bridging the Gap Between Emotion and Expression</h3>
-      <p>Emotions are fundamental to human experience, yet often difficult to articulate or share with others. LIMERO represents a novel approach to emotional expression by creating a physical, b[...]Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to intuitively observe their abstract emotional states as physical entities. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement. Specifically, during periods of negative affect such as sadness, the robot's tranquil respiratory kinematics are designed to induce psychological stabilization, effectively providing a consoling effect.
+      <p>Emotions are fundamental to human experience, yet often difficult to articulate or share with others. LIMERO represents a novel approach to emotional expression by creating a physical, breathing interface.</p>
       
       <h3>Design Philosophy</h3>
-      <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. Anxiety causes shallow, rapid breathing; calm induces slow, deep breathing[...]
+      <p>The system draws inspiration from natural human respiration, which is intrinsically linked to emotional states. Anxiety causes shallow, rapid breathing; calm induces slow, deep breathing.</p>
       
       <h3>Technical Features</h3>
       <ul>
@@ -215,7 +215,7 @@ const rawProjects = [
       </ul>
       
       <h3>Future Directions</h3>
-      <p>Upcoming work includes integration with wearable sensors for continuous emotion tracking, multi-robot synchronized interactions, and applications in group therapy settings. We are also e[...]
+      <p>Upcoming work includes integration with wearable sensors for continuous emotion tracking, multi-robot synchronized interactions, and applications in group therapy settings.</p>
     `,
     
     materials: [
@@ -225,5 +225,5 @@ const rawProjects = [
   }
 ];
 
-// Fallback image in case the GIF/JPG path is broken
-const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='[...]
+const fallbackImage = "data:image/svg+xml;charset=UTF-8,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='20px' fill='%2364748b'%3EImage Not Found%3C/text%3E%3C/svg%3E";
+
