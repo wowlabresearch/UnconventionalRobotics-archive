@@ -106,7 +106,8 @@ const rawProjects = [
       
       <p>This work demonstrates how haptic feedback can effectively modify driver behavior without cognitive overload, with potential applications beyond EVs in autonomous vehicle interfaces and general sustainable mobility.</p>
       
-      <p><strong>Published at:</strong> 28th International Conference on Human-Computer Interaction (HCII 2026)</p>
+      <p><strong>Published at:</strong> 28th International Conference on Human-Computer Interaction (HCII 2026)</p> 
+      <a href="https://doi.org/10.1007/978-3-032-30819-1_27" target="_blank" rel="noopener noreferrer">doi.org/10.1007/978-3-032-30819-1_27</a>
       
       <p><strong>Keywords:</strong> Electric Vehicles, Sustainable Driving, Haptic Feedback, Embodied Interaction, Pedal Sensing, Driver Behavior</p>
     `,
