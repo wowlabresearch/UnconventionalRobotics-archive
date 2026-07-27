@@ -192,20 +192,20 @@ const rawProjects = [
       
       <h3>Hardware Design & Mechanism</h3>
       <p>The system adopts a high-density, 3-layer structure to minimize component interference while maintaining a compact, handheld size.</p>
-      <img src=".assets/2025/fig/LIMERO-hw3.png" alt=" " width="60%">
-      <img src=".assets/2025/fig/LIMERO-hw4.png" alt=" " width="60%">
+      <img src="./assets/2025/fig/LIMERO-hw3.png" alt=" " width="60%">
+      <img src="./assets/2025/fig/LIMERO-hw4.png" alt=" " width="60%">
       <ul>
         <li><strong>Base Layer (1st Layer):</strong> This layer directly contacts the user's palm and features an ergonomic curved design to reduce fatigue during use.</li>
         <li><strong>Air Flow Layers (2nd & 3rd Layers):</strong> The routing for the body and tail tubes is separated to prevent airflow blockage and enable independent control.</li>
         <li><strong>Actuation Module:</strong> The system mimics biological breathing using a single air pump and three solenoid valves, while a bilateral hinge structure ensures stable, twist-free expansion.</li>
         <li><strong>Tail Chamber Fabrication:</strong> Made from soft Thermoplastic Polyurethane (TPU) film via heat sealing, it features a rhombus-shaped vacuum chamber that allows for clear bending motions even at low air pressures.</li>
       </ul>
-      <img src=".assets/2025/fig/LIMERO-hw.png" alt=" " width="60%">
+      <img src="./assets/2025/fig/LIMERO-hw.png" alt=" " width="60%">
       
       <h3>Pneumatic Control & Software Architecture</h3>
       <p>The control module is driven by an ESP32, which continuously regulates airflow and velocity using 8-bit PWM signals.</p>
-      <img src=".assets/2025/fig/LIMERO-hw2.png" alt=" " width="60%">
-      <img src=".assets/2025/fig/LIMERO-system.png" alt=" " width="60%">
+      <img src="./assets/2025/fig/LIMERO-hw2.png" alt=" " width="60%">
+      <img src="./assets/2025/fig/LIMERO-system.png" alt=" " width="60%">
 
       <ul>
         <li><strong>AI Emotion Recognition (Backend):</strong> Utilizing a fine-tuned YOLOv11 model in a Python Flask environment, the system infers five user emotions (Happy, Sad, Angry, Fearful, Neutral) in real-time.</li>
