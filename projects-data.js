@@ -76,6 +76,9 @@ const rawProjects = [
       <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/experimental_setup.png" alt="Experimental setup of PawTouch" width="80%">
       
       <h3>Interaction Scenario</h3>
+      
+      <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/interaction_scenario.png" alt="interaction flow" width="80%">
+
       <p>The following demonstration shows PawTouch delivering an on-body squeezing cue.</p>
       <img src="https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/pawtouch_actuation_demo.gif" alt="PawTouch on-body squeezing demonstration" width="60%">
       
