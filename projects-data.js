@@ -12,10 +12,10 @@ const rawProjects = [
     title: "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
     desc: "This study presents moveR, a mobile platform-based encounter-type haptic system designed to deliver reaction force feedback from virtual objects to the user. While conventional group-based haptic systems provide limited feedback due to their rigid structure, our approach introduces a mobile platform that can dynamically move in space, offering users a more immersive and realistic interaction experience. The system utilizes a pantograph mechanism to provide precise force feedback while maintaining portability and ease of use. This innovation enables users to feel tangible resistance when interacting with virtual objects, significantly enhancing the sense of presence in extended reality environments. Our prototype demonstrates the feasibility of combining mobility with encounter-type haptics, opening new possibilities for applications in virtual reality, augmented reality, and mixed reality systems.",
     keywords: ["Haptics", "XR", "Pantograph"],
-    thumb: "./assets/2025/thumbnails/MoRo-nct2025.gif",
+    thumb: "./assets/2025/thumbnails/NCT-Thumbnail.gif",
     
     // Media: YouTube or local video
-    youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    //youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     videoUrl: null,
     
     // Fallback: Image gallery (when no video available)
