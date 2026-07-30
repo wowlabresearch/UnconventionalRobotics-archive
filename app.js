@@ -31,11 +31,11 @@ function renderProjects() {
   } else {
     filtered.forEach(p => {
       const card = document.createElement('div');
-      
+
       let keywordsHtml = '';
       if (p.keywords && p.keywords.length > 0) {
-        keywordsHtml = '<div class="card-keywords">' + 
-          p.keywords.map(kw => `<span class="keyword-pill">${kw}</span>`).join('') + 
+        keywordsHtml = '<div class="card-keywords">' +
+          p.keywords.map(kw => `<span class="keyword-pill">${kw}</span>`).join('') +
           '</div>';
       }
 
@@ -60,8 +60,6 @@ function renderProjects() {
       grid.appendChild(card);
     });
   }
-  
-  sendHeightToWix();
 }
 
 /**
@@ -92,7 +90,7 @@ function openModal(project) {
   document.getElementById('modalTeamTag').innerText = project.team;
   document.getElementById('modalTitle').innerText = project.title;
   document.getElementById('modalTeam').innerText = `Team Members: ${project.members}`;
-  
+
   // Set description (full text, no truncation)
   document.getElementById('projectDesc').innerText = project.desc;
 
@@ -100,7 +98,7 @@ function openModal(project) {
   const videoContainer = document.getElementById('videoContainer');
   const galleryGrid = document.getElementById('galleryGrid');
   const mediaContentSection = document.getElementById('mediaContent');
-  
+
   videoContainer.innerHTML = '';
   galleryGrid.innerHTML = '';
   galleryGrid.style.display = 'none';
@@ -180,11 +178,7 @@ function openModal(project) {
   }
 
   // Show modal
-  const modalOverlay = document.getElementById('projectModal');
-  modalOverlay.style.display = 'flex';
-  positionModalOverlay();
-  window.addEventListener('scroll', positionModalOverlay);
-  window.addEventListener('resize', positionModalOverlay);
+  document.getElementById('projectModal').style.display = 'flex';
 
   // 모달을 열 때마다 스크롤을 맨 위로 올려줍니다.
   const modalContentEl = document.querySelector('.modal-content');
@@ -199,33 +193,6 @@ function openModal(project) {
       img.addEventListener('load', () => { modalContentEl.scrollTop = 0; });
     }
   });
-
-  sendHeightToWix();
-}
-
-/**
- * Keep the (position: absolute) modal overlay aligned with the currently
- * visible area. Needed because this page runs inside an auto-resizing Wix
- * iframe, where the parent page scrolls rather than this iframe — mobile
- * browsers don't reliably keep "position: fixed" pinned to the visible area
- * inside a scrolled iframe, so we fake it by tracking scroll position.
- *
- * Also sets .modal-content's max-height in px instead of relying on the CSS
- * "90vh": since the iframe auto-grows to the full page's content height,
- * "vh" resolves against that huge iframe height, not the phone's actual
- * screen height, so it fails to cap/scroll long modal content on mobile.
- */
-function positionModalOverlay() {
-  const modal = document.getElementById('projectModal');
-  if (modal.style.display !== 'flex') return;
-  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-  modal.style.top = scrollY + 'px';
-  modal.style.height = window.innerHeight + 'px';
-
-  const modalContent = document.querySelector('.modal-content');
-  if (modalContent) {
-    modalContent.style.maxHeight = Math.round(window.innerHeight * 0.9) + 'px';
-  }
 }
 
 /**
@@ -235,9 +202,6 @@ function closeModal() {
   document.getElementById('projectModal').style.display = 'none';
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 모달이 닫히면 영상 끄기
-  window.removeEventListener('scroll', positionModalOverlay);
-  window.removeEventListener('resize', positionModalOverlay);
-  sendHeightToWix();
 }
 
 /**
@@ -251,28 +215,8 @@ window.onclick = function(event) {
 };
 
 /**
- * Auto-Height Sync for Wix Integration
- * This function sends the actual document height to the parent Wix window
- * to prevent double scrollbars and ensure proper embedding.
- */
-function sendHeightToWix() {
-  if (window.parent && window.parent !== window) {
-    // Calculate the total scrollable height of the document
-    const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-    window.parent.postMessage({ type: 'RESIZE_IFRAME', height: height }, '*');
-  }
-}
-
-/**
  * Initialize application on page load
  */
 window.addEventListener('load', () => {
   renderProjects();
-  // Wait for images to load, then recalculate height
-  setTimeout(sendHeightToWix, 500); 
 });
-
-/**
- * Recalculate height on window resize
- */
-window.addEventListener('resize', sendHeightToWix);

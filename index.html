@@ -222,19 +222,16 @@
 
     /* Modal Controls */
     .modal-overlay {
-      /* NOTE: intentionally "absolute", not "fixed".
-         This page is embedded in Wix as an auto-growing iframe (see sendHeightToWix()),
-         so the real scrolling viewport is the parent Wix page, not this iframe.
-         Mobile browsers (esp. iOS Safari) mis-position "fixed" elements inside a
-         scrolled iframe, pinning them to the iframe's document top instead of the
-         visible area. JS sets top/height on open to match the current scroll position. */
-      position: absolute;
+      /* Requires the embedding iframe to have a fixed height with its own
+         scrollbar (not auto-resized to content) — otherwise "fixed" and "vh"
+         below don't resolve against the phone's real screen. */
+      position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(6px);
       display: none;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       z-index: 99999;
       padding: 20px;
       box-sizing: border-box;
@@ -244,7 +241,7 @@
       border-radius: 20px;
       width: 100%;
       max-width: 840px;
-      max-height: 90vh; /* fallback; JS overrides with a px value, see positionModalOverlay() */
+      max-height: 90vh;
       overflow-y: auto;
       overflow-anchor: none; /* stop the browser auto-scrolling as blog images load in below */
       -webkit-overflow-scrolling: touch;
