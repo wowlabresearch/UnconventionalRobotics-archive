@@ -178,6 +178,10 @@ const rawProjects = [
     gallery: [],
     
     blogContent: `
+    <div style="text-align: center; margin: 20px 0;">
+    <img src="./assets/2025/thumbnails/LIMERO-Thumbnail.gif" " width="80%">
+    </div>
+     
       <h3>Project Overview</h3>
       <p>Recent advancements in affective computing have enabled relatively precise user emotion recognition, but the feedback is primarily limited to screen-based visualizations such as graphs or numerical values. These static and rational expressions fail to convey the dynamic and abstract nature of human emotions, which limits their ability to provide immediate emotional support.</p>
       <p>To overcome this limitation, we propose a soft robotic interface that 'physicalizes' invisible emotion data into a tangible form. Inspired by the natural mechanism of respiration, this system utilizes pneumatic actuation to simulate rhythmic expansion and contraction, aiming to elicit deep emotional engagement.</p>
