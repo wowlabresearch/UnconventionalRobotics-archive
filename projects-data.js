@@ -54,7 +54,7 @@ const rawProjects = [
       <ul>
         <li><strong>Contact Surface Prediction:</strong> The system defines a virtual sphere around a target point located on the user's palm to identify interactable objects and computes the minimum distance to select the contact candidate.</li>
         <li><strong>State-Based Motion Strategy:</strong> When the end-effector is in a non-contact state, the platform tracks the user's hand; once contact is detected, the automatic following motion is suspended to prevent interaction instability.</li>
-        <li><strong>Haptic Rendering:</strong> Inspired by the Finger Proxy algorithm, the system calculates a resistive force using a linear spring model, $F=kx$, where $k$ denotes the stiffness parameter reflecting the material properties of the virtual object and $x$ denotes the penetration depth.</li>
+        <li><strong>Haptic Rendering:</strong> Inspired by the Finger Proxy algorithm, the system calculates a resistive force using a linear spring model, F=kx, where k denotes the stiffness parameter reflecting the material properties of the virtual object and x denotes the penetration depth.</li>
       </ul>
     `
     

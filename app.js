@@ -28,7 +28,6 @@ function renderProjects() {
   const filtered = getFilteredProjects();
   renderGrid(filtered);
   renderThumbStrip(filtered);
-  sendHeightToWix();
 }
 
 /**
@@ -232,21 +231,12 @@ function openProjectDetail(project) {
   // Blog/gallery images load in asynchronously and change the page's
   // height as they do; re-pin scroll to the top each time one finishes so
   // the header (year/team/description) stays the first thing visible
-  // instead of drifting down once images have loaded. Each image load also
-  // changes the document's height, so re-send it to Wix each time too —
-  // otherwise the iframe stays sized for the pre-image-load height and gets
-  // its own inner scrollbar (double scrollbar) until something else triggers
-  // a resize.
+  // instead of drifting down once images have loaded.
   detailView.querySelectorAll('img').forEach(img => {
     if (!img.complete) {
-      img.addEventListener('load', () => {
-        window.scrollTo(0, 0);
-        sendHeightToWix();
-      });
+      img.addEventListener('load', () => { window.scrollTo(0, 0); });
     }
   });
-
-  sendHeightToWix();
 }
 
 /**
@@ -260,20 +250,6 @@ function closeProjectDetail() {
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 상세 화면을 닫으면 영상 끄기
   window.scrollTo(0, 0);
-  sendHeightToWix();
-}
-
-/**
- * Auto-Height Sync for Wix Integration
- * This page is embedded in Wix as an auto-growing iframe; this sends the
- * actual document height to the parent Wix window so it can resize the
- * iframe to match, avoiding double scrollbars.
- */
-function sendHeightToWix() {
-  if (window.parent && window.parent !== window) {
-    const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-    window.parent.postMessage({ type: 'RESIZE_IFRAME', height: height }, '*');
-  }
 }
 
 /**
@@ -281,7 +257,4 @@ function sendHeightToWix() {
  */
 window.addEventListener('load', () => {
   renderProjects();
-  setTimeout(sendHeightToWix, 500); // recalculate once images have loaded
 });
-
-window.addEventListener('resize', sendHeightToWix);
