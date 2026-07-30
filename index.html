@@ -114,6 +114,52 @@
       gap: 24px;
     }
 
+    /* Thumbnail strip: shown instead of the grid while a project is open,
+       so other projects stay one tap away without leaving the detail view. */
+    .thumb-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 4px 4px 14px 4px;
+      margin-bottom: 20px;
+    }
+    .thumb-strip-item {
+      flex: 0 0 auto;
+      width: 72px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+    }
+    .thumb-strip-item img {
+      display: block;
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .thumb-strip-item:hover img {
+      transform: scale(1.05);
+    }
+    .thumb-strip-item.active img {
+      border-color: #2563eb;
+    }
+    .thumb-strip-label {
+      display: block;
+      width: 72px;
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: #64748b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
     /* Project Card */
     .card {
       background: #ffffff;
@@ -439,28 +485,28 @@
       <p>Team Project Demo Videos, Presentations, Research Papers, etc. </p>
     </div>
 
-    <!-- List View: filters, search, and the project grid -->
-    <div id="listView">
-      <!-- Year Filter Bar -->
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
-        <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
-        <button class="filter-btn" disabled title="Coming Soon">2026</button>
-        <button class="filter-btn" disabled title="Coming Soon">2027</button>
-      </div>
-
-      <!-- Search Bar -->
-      <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search teams, project titles, or research topics..." oninput="handleSearch()" />
-      </div>
-
-      <!-- Projects Grid Container -->
-      <div class="grid-container" id="projectGrid"></div>
+    <!-- Year Filter Bar (always visible) -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
+      <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
+      <button class="filter-btn" disabled title="Coming Soon">2026</button>
+      <button class="filter-btn" disabled title="Coming Soon">2027</button>
     </div>
 
-    <!-- Detail View: shown instead of the list when a project is opened -->
+    <!-- Search Bar (always visible) -->
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search teams, project titles, or research topics..." oninput="handleSearch()" />
+    </div>
+
+    <!-- Thumbnail strip: shown only while a project is open, for quickly switching between projects -->
+    <div class="thumb-strip" id="thumbStrip" style="display: none;"></div>
+
+    <!-- Projects Grid Container -->
+    <div class="grid-container" id="projectGrid"></div>
+
+    <!-- Detail View: shown instead of the grid when a project is opened -->
     <div class="detail-view" id="projectDetail" style="display: none;">
-      <button class="btn btn-secondary back-btn" onclick="closeProjectDetail()">&larr; Back to list</button>
+      <button class="btn btn-secondary back-btn" onclick="closeProjectDetail()">&larr; Back to full list</button>
       <div>
         <span class="modal-header-tag" id="modalYearBadge">2026</span>
         <span class="modal-header-tag" id="modalTeamTag" style="background: #f1f5f9; color:#475569;">Team 1</span>

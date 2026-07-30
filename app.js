@@ -1,19 +1,17 @@
 /**
  * Main Application Logic
- * Handles filtering, searching, modal interactions, and rendering
+ * Handles filtering, searching, and grid/detail view rendering
  */
 
 let currentYearFilter = 'all';
 let currentSearchTerm = '';
+let currentOpenProjectId = null; // set while the detail view is open, for thumb-strip highlighting
 
 /**
- * Render all projects based on current filter and search
+ * Projects matching the current year filter + search term
  */
-function renderProjects() {
-  const grid = document.getElementById('projectGrid');
-  grid.innerHTML = '';
-
-  const filtered = rawProjects.filter(p => {
+function getFilteredProjects() {
+  return rawProjects.filter(p => {
     const matchesYear = (currentYearFilter === 'all') || (p.year === currentYearFilter);
     const matchesSearch = p.title.toLowerCase().includes(currentSearchTerm) ||
                           p.team.toLowerCase().includes(currentSearchTerm) ||
@@ -21,6 +19,24 @@ function renderProjects() {
                           p.desc.toLowerCase().includes(currentSearchTerm);
     return matchesYear && matchesSearch;
   });
+}
+
+/**
+ * Re-render the grid and the thumbnail strip based on current filter/search
+ */
+function renderProjects() {
+  const filtered = getFilteredProjects();
+  renderGrid(filtered);
+  renderThumbStrip(filtered);
+  sendHeightToWix();
+}
+
+/**
+ * Render the full project cards grid
+ */
+function renderGrid(filtered) {
+  const grid = document.getElementById('projectGrid');
+  grid.innerHTML = '';
 
   if (filtered.length === 0) {
     grid.innerHTML = `
@@ -28,40 +44,61 @@ function renderProjects() {
         <p>No projects found for the selected year or search criteria.</p>
       </div>
     `;
-  } else {
-    filtered.forEach(p => {
-      const card = document.createElement('div');
-
-      let keywordsHtml = '';
-      if (p.keywords && p.keywords.length > 0) {
-        keywordsHtml = '<div class="card-keywords">' +
-          p.keywords.map(kw => `<span class="keyword-pill">${kw}</span>`).join('') +
-          '</div>';
-      }
-
-      card.className = 'card';
-      card.onclick = () => openProjectDetail(p);
-      card.innerHTML = `
-        <div class="card-thumb-wrapper">
-          <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" class="card-thumb" loading="lazy" />
-          <span class="year-badge">${p.year}</span>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">${p.team}</span>
-          <h3 class="card-title">${p.title}</h3>
-          <p class="card-members">👤 ${p.members}</p>
-          <p class="card-desc">${p.desc}</p>
-          ${keywordsHtml}
-          <div class="card-footer-btn">
-            View Details & Materials &rarr;
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+    return;
   }
 
-  sendHeightToWix();
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+
+    let keywordsHtml = '';
+    if (p.keywords && p.keywords.length > 0) {
+      keywordsHtml = '<div class="card-keywords">' +
+        p.keywords.map(kw => `<span class="keyword-pill">${kw}</span>`).join('') +
+        '</div>';
+    }
+
+    card.className = 'card';
+    card.onclick = () => openProjectDetail(p);
+    card.innerHTML = `
+      <div class="card-thumb-wrapper">
+        <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" class="card-thumb" loading="lazy" />
+        <span class="year-badge">${p.year}</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">${p.team}</span>
+        <h3 class="card-title">${p.title}</h3>
+        <p class="card-members">👤 ${p.members}</p>
+        <p class="card-desc">${p.desc}</p>
+        ${keywordsHtml}
+        <div class="card-footer-btn">
+          View Details & Materials &rarr;
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/**
+ * Render the small thumbnail strip (shown only while the detail view is open)
+ * so switching to another project doesn't require going back to the grid first.
+ */
+function renderThumbStrip(filtered) {
+  const strip = document.getElementById('thumbStrip');
+  strip.innerHTML = '';
+
+  filtered.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'thumb-strip-item' + (p.id === currentOpenProjectId ? ' active' : '');
+    btn.type = 'button';
+    btn.title = p.title;
+    btn.onclick = () => openProjectDetail(p);
+    btn.innerHTML = `
+      <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" loading="lazy" />
+      <span class="thumb-strip-label">${p.team}</span>
+    `;
+    strip.appendChild(btn);
+  });
 }
 
 /**
@@ -87,6 +124,8 @@ function handleSearch() {
  * (Modified to show both Media and Blog content simultaneously without tabs)
  */
 function openProjectDetail(project) {
+  currentOpenProjectId = project.id;
+
   // Set header information
   document.getElementById('modalYearBadge').innerText = project.year;
   document.getElementById('modalTeamTag').innerText = project.team;
@@ -179,8 +218,11 @@ function openProjectDetail(project) {
     materialButtonsContainer.innerHTML = '<p style="color: #64748b;">No materials available for this project.</p>';
   }
 
-  // Swap the list view out for the detail view
-  document.getElementById('listView').style.display = 'none';
+  // Swap the grid out for the detail view; filter bar and search stay visible.
+  // The thumb strip re-renders so the newly opened project is highlighted.
+  document.getElementById('projectGrid').style.display = 'none';
+  document.getElementById('thumbStrip').style.display = 'flex';
+  renderThumbStrip(getFilteredProjects());
   const detailView = document.getElementById('projectDetail');
   detailView.style.display = 'block';
 
@@ -201,11 +243,13 @@ function openProjectDetail(project) {
 }
 
 /**
- * Return to the project list view
+ * Return to the full project grid
  */
 function closeProjectDetail() {
+  currentOpenProjectId = null;
   document.getElementById('projectDetail').style.display = 'none';
-  document.getElementById('listView').style.display = 'block';
+  document.getElementById('thumbStrip').style.display = 'none';
+  document.getElementById('projectGrid').style.display = '';
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 상세 화면을 닫으면 영상 끄기
   window.scrollTo(0, 0);
