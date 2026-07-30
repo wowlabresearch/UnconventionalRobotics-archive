@@ -40,7 +40,7 @@ function renderProjects() {
       }
 
       card.className = 'card';
-      card.onclick = () => openModal(p);
+      card.onclick = () => openProjectDetail(p);
       card.innerHTML = `
         <div class="card-thumb-wrapper">
           <img src="${p.thumb}" onerror="this.onerror=null; this.src='${fallbackImage}'" alt="${p.title}" class="card-thumb" loading="lazy" />
@@ -60,6 +60,8 @@ function renderProjects() {
       grid.appendChild(card);
     });
   }
+
+  sendHeightToWix();
 }
 
 /**
@@ -81,10 +83,10 @@ function handleSearch() {
 }
 
 /**
- * Open project detail modal
+ * Show the project detail view in place of the grid.
  * (Modified to show both Media and Blog content simultaneously without tabs)
  */
-function openModal(project) {
+function openProjectDetail(project) {
   // Set header information
   document.getElementById('modalYearBadge').innerText = project.year;
   document.getElementById('modalTeamTag').innerText = project.team;
@@ -177,46 +179,58 @@ function openModal(project) {
     materialButtonsContainer.innerHTML = '<p style="color: #64748b;">No materials available for this project.</p>';
   }
 
-  // Show modal
-  document.getElementById('projectModal').style.display = 'flex';
+  // Swap the list view out for the detail view
+  document.getElementById('listView').style.display = 'none';
+  const detailView = document.getElementById('projectDetail');
+  detailView.style.display = 'block';
 
-  // 모달을 열 때마다 스크롤을 맨 위로 올려줍니다.
-  const modalContentEl = document.querySelector('.modal-content');
-  modalContentEl.scrollTop = 0;
+  // 상세 화면을 열 때마다 페이지 맨 위로 스크롤합니다.
+  window.scrollTo(0, 0);
 
-  // Blog/gallery images load in asynchronously and change the content's
+  // Blog/gallery images load in asynchronously and change the page's
   // height as they do; re-pin scroll to the top each time one finishes so
   // the header (year/team/description) stays the first thing visible
   // instead of drifting down once images have loaded.
-  modalContentEl.querySelectorAll('img').forEach(img => {
+  detailView.querySelectorAll('img').forEach(img => {
     if (!img.complete) {
-      img.addEventListener('load', () => { modalContentEl.scrollTop = 0; });
+      img.addEventListener('load', () => { window.scrollTo(0, 0); });
     }
   });
+
+  sendHeightToWix();
 }
 
 /**
- * Close project detail modal
+ * Return to the project list view
  */
-function closeModal() {
-  document.getElementById('projectModal').style.display = 'none';
+function closeProjectDetail() {
+  document.getElementById('projectDetail').style.display = 'none';
+  document.getElementById('listView').style.display = 'block';
   const videoContainer = document.getElementById('videoContainer');
-  videoContainer.innerHTML = ''; // 모달이 닫히면 영상 끄기
+  videoContainer.innerHTML = ''; // 상세 화면을 닫으면 영상 끄기
+  window.scrollTo(0, 0);
+  sendHeightToWix();
 }
 
 /**
- * Close modal when clicking outside of it
+ * Auto-Height Sync for Wix Integration
+ * This page is embedded in Wix as an auto-growing iframe; this sends the
+ * actual document height to the parent Wix window so it can resize the
+ * iframe to match, avoiding double scrollbars.
  */
-window.onclick = function(event) {
-  const modal = document.getElementById('projectModal');
-  if (event.target === modal) {
-    closeModal();
+function sendHeightToWix() {
+  if (window.parent && window.parent !== window) {
+    const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+    window.parent.postMessage({ type: 'RESIZE_IFRAME', height: height }, '*');
   }
-};
+}
 
 /**
  * Initialize application on page load
  */
 window.addEventListener('load', () => {
   renderProjects();
+  setTimeout(sendHeightToWix, 500); // recalculate once images have loaded
 });
+
+window.addEventListener('resize', sendHeightToWix);

@@ -220,61 +220,31 @@
       gap: 4px;
     }
 
-    /* Modal Controls */
-    .modal-overlay {
-      /* Requires the embedding iframe to have a fixed height with its own
-         scrollbar (not auto-resized to content) — otherwise "fixed" and "vh"
-         below don't resolve against the phone's real screen. */
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(6px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .modal-content {
+    /* Detail View (replaces the old fixed-position modal overlay).
+       Instead of popping up over the grid, it swaps in as normal in-flow
+       content — no position:fixed/vh math needed, so it's immune to the
+       iframe-viewport bugs that broke the popup on mobile inside Wix. */
+    .detail-view {
       background: #ffffff;
       border-radius: 20px;
-      width: 100%;
+      border: 1px solid #e2e8f0;
       max-width: 840px;
-      max-height: 90vh;
-      overflow-y: auto;
-      overflow-anchor: none; /* stop the browser auto-scrolling as blog images load in below */
-      -webkit-overflow-scrolling: touch;
+      margin: 0 auto;
       padding: 30px;
       position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      animation: modalSlideUp 0.25s ease-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      overflow-anchor: none; /* stop the browser auto-scrolling as blog images load in below */
+      animation: detailFadeIn 0.2s ease-out;
     }
-    @keyframes modalSlideUp {
-      from { opacity: 0; transform: translateY(16px); }
+    @keyframes detailFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .modal-close {
-      position: absolute;
-      top: 22px; right: 22px;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      border: 1px solid #e2e8f0;
-      background: #f8f9fa;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #64748b;
-      transition: all 0.2s ease;
+    .back-btn {
+      margin-bottom: 20px;
     }
-    .modal-close:hover {
-      background: #8FFF00;
-      color: #0f172a;
-    }
-    
+
     .modal-header-tag {
       display: inline-block;
       padding: 4px 10px;
@@ -455,7 +425,7 @@
       body { padding: 20px 14px; }
       .header h1 { font-size: 1.6rem; }
       .grid-container { grid-template-columns: 1fr; }
-      .modal-content { padding: 20px; }
+      .detail-view { padding: 20px; }
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     }
   </style>
@@ -469,27 +439,28 @@
       <p>Team Project Demo Videos, Presentations, Research Papers, etc. </p>
     </div>
 
-    <!-- Year Filter Bar -->
-   <div class="filter-bar">
-      <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
-      <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
-      <button class="filter-btn" disabled title="Coming Soon">2026</button>
-      <button class="filter-btn" disabled title="Coming Soon">2027</button>
+    <!-- List View: filters, search, and the project grid -->
+    <div id="listView">
+      <!-- Year Filter Bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
+        <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
+        <button class="filter-btn" disabled title="Coming Soon">2026</button>
+        <button class="filter-btn" disabled title="Coming Soon">2027</button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search teams, project titles, or research topics..." oninput="handleSearch()" />
+      </div>
+
+      <!-- Projects Grid Container -->
+      <div class="grid-container" id="projectGrid"></div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-wrapper">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search teams, project titles, or research topics..." oninput="handleSearch()" />
-    </div>
-
-    <!-- Projects Grid Container -->
-    <div class="grid-container" id="projectGrid"></div>
-  </div>
-
-  <!-- Detail Modal -->
-  <div class="modal-overlay" id="projectModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <!-- Detail View: shown instead of the list when a project is opened -->
+    <div class="detail-view" id="projectDetail" style="display: none;">
+      <button class="btn btn-secondary back-btn" onclick="closeProjectDetail()">&larr; Back to list</button>
       <div>
         <span class="modal-header-tag" id="modalYearBadge">2026</span>
         <span class="modal-header-tag" id="modalTeamTag" style="background: #f1f5f9; color:#475569;">Team 1</span>
