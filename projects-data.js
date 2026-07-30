@@ -41,13 +41,10 @@ const rawProjects = [
         <li><strong>State-Based Motion Strategy:</strong> When the end-effector is in a non-contact state, the platform tracks the user's hand; once contact is detected, the automatic following motion is suspended to prevent interaction instability.</li>
         <li><strong>Haptic Rendering:</strong> Inspired by the Finger Proxy algorithm, the system calculates a resistive force using a linear spring model, $F=kx$, where $k$ denotes the stiffness parameter reflecting the material properties of the virtual object and $x$ denotes the penetration depth.</li>
       </ul>
-    `,
+    `
     
     // Materials: Can include reports, slides, papers, or any other type
-    materials: [
-      { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/team4_report.pdf" },
-      { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team4_slides.pdf" }
-    ]
+
   },
   
   {
@@ -117,8 +114,7 @@ const rawProjects = [
     `,
     
     materials: [
-      { type: "report", label: "📄 Publication (PDF)", url: "./assets/2025/pdf/MED-paper.pdf" },
-      { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
+      { type: "report", label: "📄 Publication (PDF)", url: "./assets/2025/pdf/MED-paper.pdf" }
     ]
   },
   
@@ -163,12 +159,9 @@ const rawProjects = [
       
       <h3>Research Results</h3>
       <p>The proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots. By framing soft robot control as an interaction problem, this work demonstrates a practical approach for intuitive manipulation while highlighting the fundamental trade-offs between intuitiveness and stability under open-loop actuation.</p>
-    `,
+    `
     
-    materials: [
-      { type: "report", label: "📄 Technical Report (PDF)", url: "./assets/2025/reports/Hand-driven Embodied Interface for Hybrid Origami Soft Robot.pdf" },
-      { type: "slides", label: "📊 Project Slides", url: "./assets/2025/slides/team3_slides.pdf" }
-    ]
+   
   },
   
   {
@@ -182,7 +175,6 @@ const rawProjects = [
     thumb: "./assets/2025/thumbnails/LIMERO-Thumbnail.gif",
     
     youtubeEmbed: null,
-    videoUrl: "./assets/2025/videos/limero-demo.mp4",  
     gallery: [],
     
     blogContent: `
@@ -221,14 +213,9 @@ const rawProjects = [
         <li><strong>Multimodal Haptic Interaction:</strong> For example, upon receiving a 'Happy' signal, the robot inflates and moves its tail rapidly; in a 'Neutral' state, it generates a 60 BPM heartbeat vibration pattern to vividly express a lifelike idle state.</li>
       </ul>
       
-      <h3>Research Results</h3>
+      <h3>Results</h3>
       <p>The implemented prototype stably performed multimodal interactions, seamlessly synchronizing the robot's inflation, tail movement, and vibration patterns based on emotion recognition results. Notably, during negative emotional states such as sadness or tension, the robot's calm breathing motion successfully shifted the user's attention from visual information to a tactile and physical experience. This demonstrated positive potential for providing psychological stabilization and profound empathy.</p>
-    `,
-    
-    materials: [
-      { type: "report", label: "📄 Final Report (PDF)", url: "./assets/2025/reports/Final Report_LIMERO.pdf" },
-      { type: "slides", label: "📊 Presentation Slides", url: "./assets/2025/slides/team5_slides.pdf" }
-    ]
+    `
   }
 ];
 
