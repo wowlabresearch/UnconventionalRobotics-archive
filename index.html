@@ -244,8 +244,9 @@
       border-radius: 20px;
       width: 100%;
       max-width: 840px;
-      max-height: 90vh;
+      max-height: 90vh; /* fallback; JS overrides with a px value, see positionModalOverlay() */
       overflow-y: auto;
+      overflow-anchor: none; /* stop the browser auto-scrolling as blog images load in below */
       -webkit-overflow-scrolling: touch;
       padding: 30px;
       position: relative;

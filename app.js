@@ -187,7 +187,18 @@ function openModal(project) {
   window.addEventListener('resize', positionModalOverlay);
 
   // 모달을 열 때마다 스크롤을 맨 위로 올려줍니다.
-  document.querySelector('.modal-content').scrollTop = 0;
+  const modalContentEl = document.querySelector('.modal-content');
+  modalContentEl.scrollTop = 0;
+
+  // Blog/gallery images load in asynchronously and change the content's
+  // height as they do; re-pin scroll to the top each time one finishes so
+  // the header (year/team/description) stays the first thing visible
+  // instead of drifting down once images have loaded.
+  modalContentEl.querySelectorAll('img').forEach(img => {
+    if (!img.complete) {
+      img.addEventListener('load', () => { modalContentEl.scrollTop = 0; });
+    }
+  });
 
   sendHeightToWix();
 }
@@ -198,6 +209,11 @@ function openModal(project) {
  * iframe, where the parent page scrolls rather than this iframe — mobile
  * browsers don't reliably keep "position: fixed" pinned to the visible area
  * inside a scrolled iframe, so we fake it by tracking scroll position.
+ *
+ * Also sets .modal-content's max-height in px instead of relying on the CSS
+ * "90vh": since the iframe auto-grows to the full page's content height,
+ * "vh" resolves against that huge iframe height, not the phone's actual
+ * screen height, so it fails to cap/scroll long modal content on mobile.
  */
 function positionModalOverlay() {
   const modal = document.getElementById('projectModal');
@@ -205,6 +221,11 @@ function positionModalOverlay() {
   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
   modal.style.top = scrollY + 'px';
   modal.style.height = window.innerHeight + 'px';
+
+  const modalContent = document.querySelector('.modal-content');
+  if (modalContent) {
+    modalContent.style.maxHeight = Math.round(window.innerHeight * 0.9) + 'px';
+  }
 }
 
 /**
