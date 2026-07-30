@@ -180,12 +180,31 @@ function openModal(project) {
   }
 
   // Show modal
-  document.getElementById('projectModal').style.display = 'flex';
-  
+  const modalOverlay = document.getElementById('projectModal');
+  modalOverlay.style.display = 'flex';
+  positionModalOverlay();
+  window.addEventListener('scroll', positionModalOverlay);
+  window.addEventListener('resize', positionModalOverlay);
+
   // 모달을 열 때마다 스크롤을 맨 위로 올려줍니다.
   document.querySelector('.modal-content').scrollTop = 0;
-  
+
   sendHeightToWix();
+}
+
+/**
+ * Keep the (position: absolute) modal overlay aligned with the currently
+ * visible area. Needed because this page runs inside an auto-resizing Wix
+ * iframe, where the parent page scrolls rather than this iframe — mobile
+ * browsers don't reliably keep "position: fixed" pinned to the visible area
+ * inside a scrolled iframe, so we fake it by tracking scroll position.
+ */
+function positionModalOverlay() {
+  const modal = document.getElementById('projectModal');
+  if (modal.style.display !== 'flex') return;
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  modal.style.top = scrollY + 'px';
+  modal.style.height = window.innerHeight + 'px';
 }
 
 /**
@@ -195,6 +214,8 @@ function closeModal() {
   document.getElementById('projectModal').style.display = 'none';
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 모달이 닫히면 영상 끄기
+  window.removeEventListener('scroll', positionModalOverlay);
+  window.removeEventListener('resize', positionModalOverlay);
   sendHeightToWix();
 }
 
