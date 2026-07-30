@@ -143,19 +143,23 @@ const rawProjects = [
     keywords: ["Origami", "Soft Robot", "Embodied Interface", "Wire-driven"],
     thumb: "./assets/2025/thumbnails/III-Thumbnail.gif",
     
-    youtubeEmbed: null,  
-    videoUrl: null,
+   // youtubeEmbed: null,  
+   // videoUrl: null,
     
-    gallery: [
-      "./assets/2025/images/iii-prototype-01.jpg",
-      "./assets/2025/images/iii-prototype-02.jpg",
-      "./assets/2025/images/iii-control-interface.jpg"
-    ],
+    
     
     blogContent: `
+    <div style="text-align: center; margin: 20px 0;">
+    <img src="./assets/2025/thumbnails/III-Thumbnail.gif" " width="80%">
+    </div>
+     
       <h3>Project Overview</h3>
       <p>Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. To address this gap, we present a hand-driven embodied interface allowing users to directly manipulate robot deformation through natural hand motions without prior training.</p>
-      
+    
+      <div style="text-align: center; margin: 20px 0;">
+      <img src="./assets/2025/fig/III-01.png" " width="80%">
+      </div>
+
       <h3>Hardware Design</h3>
       <p>The robot features a hybrid origami architecture fabricated from Sierra 210 paper, chosen for its balance of elasticity and thickness.</p>
       <ul>
@@ -163,6 +167,11 @@ const rawProjects = [
         <li><strong>Actuation System:</strong> A wire-driven actuation system was implemented by routing tension cables to eight MG996R continuous-rotation servomotors, generating complex bending and twisting motions.</li>
       </ul>
       
+       <div style="text-align: center; margin: 20px 0;">
+       <img src="./assets/2025/fig/III-03.png" " width="80%">
+      <img src="./assets/2025/fig/III-02.png" " width="80%">
+      </div>
+
       <h3>Control System & AI Integration</h3>
       <p>To enable intuitive interaction, we implemented a lightweight web-based real-time control system.</p>
       <ul>
