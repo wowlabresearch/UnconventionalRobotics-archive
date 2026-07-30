@@ -16,19 +16,30 @@ const rawProjects = [
     
     // Media: YouTube or local video
     //youtubeEmbed: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    videoUrl: null,
+    //videoUrl: null,
     
     // Fallback: Image gallery (when no video available)
-    gallery: [
-      "./assets/2025/thumbnails/NCT-Thumbnail.gif"
-    ],
+    //gallery: ["./assets/2025/thumbnails/NCT-Thumbnail.gif"],
     
     // Blog-style content (when no video, or as additional details)
     blogContent: `
-      <h3>Project Overview</h3>
+      <div style="text-align: center; margin: 20px 0;">
+      <img src="./assets/2025/thumbnails/NCT-Thumbnail.gif" width="80%">
+      
+      </div>
+
+    <h3>Project Overview</h3>
       <p>Haptic feedback has long been regarded as a crucial element for immersive interaction in virtual reality (VR) environments. The proposed moveR system addresses the limitations of existing haptic systems, such as restricted workspace and device weight, by mounting a pantograph mechanism on a mobile platform. This Encounter-type haptic design completely eliminates the physical burden on the user by providing contact only when needed.</p>
       
+      <div style="text-align: center; margin: 20px 0;">
+      <img src="./assets/2025/fig/NCT-01.png" width="80%">
+      <img src="./assets/2025/fig/NCT-02.png" width="80%">
+      </div>
+
       <h3>Hardware Implementation</h3>
+         <div style="text-align: center; margin: 20px 0;">
+      <img src="./assets/2025/fig/NCT-05.png" width="80%">
+      </div>
       <ul>
         <li><strong>Mobile Platform:</strong> The platform is designed based on a mecanum-wheel structure that enables omnidirectional movement. It utilizes four DC motors controlled by an ESP32 microcontroller, while a VR controller mounted on the platform tracks its position.</li>
         <li><strong>Pantograph Device:</strong> The system is based on a two-degree-of-freedom planar linkage mechanism driven by two Dynamixel XM430 motors.</li>
@@ -36,6 +47,10 @@ const rawProjects = [
       </ul>
       
       <h3>Software & Control Algorithms</h3>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="./assets/2025/fig/NCT-03.png" width="80%">
+        <img src="./assets/2025/fig/NCT-04.png" width="80%">
+      </div>
       <ul>
         <li><strong>Contact Surface Prediction:</strong> The system defines a virtual sphere around a target point located on the user's palm to identify interactable objects and computes the minimum distance to select the contact candidate.</li>
         <li><strong>State-Based Motion Strategy:</strong> When the end-effector is in a non-contact state, the platform tracks the user's hand; once contact is detected, the automatic following motion is suspended to prevent interaction instability.</li>
