@@ -232,10 +232,17 @@ function openProjectDetail(project) {
   // Blog/gallery images load in asynchronously and change the page's
   // height as they do; re-pin scroll to the top each time one finishes so
   // the header (year/team/description) stays the first thing visible
-  // instead of drifting down once images have loaded.
+  // instead of drifting down once images have loaded. Each image load also
+  // changes the document's height, so re-send it to Wix each time too —
+  // otherwise the iframe stays sized for the pre-image-load height and gets
+  // its own inner scrollbar (double scrollbar) until something else triggers
+  // a resize.
   detailView.querySelectorAll('img').forEach(img => {
     if (!img.complete) {
-      img.addEventListener('load', () => { window.scrollTo(0, 0); });
+      img.addEventListener('load', () => {
+        window.scrollTo(0, 0);
+        sendHeightToWix();
+      });
     }
   });
 
