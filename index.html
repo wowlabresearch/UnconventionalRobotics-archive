@@ -412,6 +412,12 @@
       max-width: 80%;
       margin: 16px auto;
       border-radius: 8px;
+      cursor: zoom-in;
+      transition: max-width 0.25s ease;
+    }
+    .blog-content img.zoomed {
+      max-width: 100%;
+      cursor: zoom-out;
     }
     .blog-content ul, .blog-content ol {
       margin-left: 20px;
@@ -509,6 +515,16 @@
       .grid-container { grid-template-columns: 1fr; }
       .detail-view { padding: 20px; }
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+      /* Text reads relatively large vs. images on small screens — shrink
+         text a bit and let images use more of the available width. */
+      .modal-title { font-size: 1.3rem; }
+      .modal-team { font-size: 0.85rem; }
+      .project-desc { font-size: 0.88rem; }
+      .blog-content { font-size: 0.88rem; }
+      .blog-content h3 { font-size: 1rem; }
+      .blog-content img { max-width: 94%; }
+      .blog-content img.zoomed { max-width: 100%; }
     }
   </style>
 </head>

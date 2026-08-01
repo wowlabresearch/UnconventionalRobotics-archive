@@ -262,6 +262,19 @@ function closeProjectDetail() {
 }
 
 /**
+ * Tap/click a blog-content image to enlarge it in place (toggles between
+ * the default width and full width). Deliberately not a fixed/absolute-
+ * positioned lightbox overlay — this page has a long history of iframe
+ * position bugs when embedded in Wix, so zooming stays a simple in-flow
+ * size toggle instead.
+ */
+document.getElementById('blogContent').addEventListener('click', (event) => {
+  if (event.target.tagName === 'IMG') {
+    event.target.classList.toggle('zoomed');
+  }
+});
+
+/**
  * Initialize application on page load
  */
 window.addEventListener('load', () => {
