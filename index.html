@@ -246,6 +246,7 @@
       color: #475569;
       line-height: 1.5;
       display: -webkit-box;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -416,6 +417,11 @@
       transition: max-width 0.25s ease;
     }
     .blog-content img.zoomed {
+      /* width: 100% overrides raw HTML width="..." attributes some images
+         use (e.g. width="80%") — those set a fixed CSS width via a
+         low-priority presentational hint that max-width alone can't grow
+         past, so it has to be beaten with a real width rule here. */
+      width: 100%;
       max-width: 100%;
       cursor: zoom-out;
     }
@@ -524,7 +530,7 @@
       .blog-content { font-size: 0.88rem; }
       .blog-content h3 { font-size: 1rem; }
       .blog-content img { max-width: 94%; }
-      .blog-content img.zoomed { max-width: 100%; }
+      .blog-content img.zoomed { width: 100%; max-width: 100%; }
     }
   </style>
 </head>
