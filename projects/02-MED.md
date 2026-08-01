@@ -14,7 +14,7 @@ gallery:
   - "https://raw.githubusercontent.com/wowlabresearch/pawTouch-HCII2026/main/Figures/fixed_threshold_results.png"
 materials:
   - type: "report"
-    label: "📄 Publication (PDF)"
+    label: "📄 Publication (PDF): HCII'26"
     url: "./assets/2025/pdf/MED-paper.pdf"
 ---
 

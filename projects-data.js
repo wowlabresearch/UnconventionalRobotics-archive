@@ -49,7 +49,7 @@ const rawProjects = [
     "materials": [
       {
         "type": "report",
-        "label": "📄 Publication (PDF)",
+        "label": "📄 Publication (PDF): HCII'26",
         "url": "./assets/2025/pdf/MED-paper.pdf"
       }
     ]
