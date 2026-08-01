@@ -33,7 +33,19 @@ To enable intuitive interaction, we implemented a lightweight web-based real-tim
 - **Browser-Based Pipeline:** The user interface operates entirely within a web browser, utilizing p5.js for 3D simulation and ml5.js for vision-based hand tracking.
 - **Direct Communication:** The browser connects directly to an ESP32 microcontroller via the Web Serial API, enabling low-latency data exchange without requiring a dedicated server.
 - **Control Strategy Evolution:** To balance stability and intuitiveness in an open-loop system, we explored multiple strategies ranging from proportional hand mapping to threshold-based binary control.
+
+<div style="text-align: center; margin: 20px 0;">
+<img src="./assets/2025/fig/III-method1.gif" width="80%">
+<img src="./assets/2025/fig/III-method2.gif" width="80%">
+</div>
+
 - **AI-based Inverse Kinematics:** We ultimately explored a multilayer perceptron (MLP) neural network approach that predicts the required actuator commands based on user-specified 3D target positions.
+
+<div style="text-align: center; margin: 20px 0;">
+<img src="./assets/2025/fig/III-method3.gif" width="80%">
+<img src="./assets/2025/fig/III-method4.gif" width="80%">
+<img src="./assets/2025/fig/III-demo2.gif" width="60%">
+</div>
 
 ### Research Results
 The proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots. By framing soft robot control as an interaction problem, this work demonstrates a practical approach for intuitive manipulation while highlighting the fundamental trade-offs between intuitiveness and stability under open-loop actuation.
