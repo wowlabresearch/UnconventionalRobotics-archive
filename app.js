@@ -224,6 +224,10 @@ function openProjectDetail(project) {
     materialButtonsContainer.innerHTML = '<p style="color: #64748b;">No materials available for this project.</p>';
   }
 
+  // Copyright notice, auto-filled from this project's year + team members
+  document.getElementById('copyrightNotice').innerText =
+    `© ${project.year} ${project.members}. All video, photo, and image content on this page was created by the project team.`;
+
   // Swap the grid out for the detail view; filter bar and search stay visible.
   // The thumb strips re-render so the newly opened project is highlighted.
   document.getElementById('projectGrid').style.display = 'none';
