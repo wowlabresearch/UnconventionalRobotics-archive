@@ -407,6 +407,12 @@
     .blog-content p {
       margin-bottom: 12px;
     }
+    .blog-content img {
+      display: block;
+      max-width: 80%;
+      margin: 16px auto;
+      border-radius: 8px;
+    }
     .blog-content ul, .blog-content ol {
       margin-left: 20px;
       margin-bottom: 12px;
@@ -471,6 +477,22 @@
       font-size: 0.8rem;
       border-radius: 16px;
       margin-bottom: 20px;
+    }
+
+    /* Bottom nav: repeats the thumb strip + back button at the end of a
+       project's detail view, so switching projects doesn't require
+       scrolling all the way back up. */
+    .bottom-nav {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    .bottom-nav .thumb-strip {
+      margin-bottom: 12px;
+    }
+    .bottom-nav .back-btn {
+      margin-bottom: 0;
     }
 
     .empty-state {
@@ -555,6 +577,12 @@
         <div class="btn-group" id="materialButtons">
           <!-- Dynamically generated buttons -->
         </div>
+      </div>
+
+      <!-- Bottom navigation: jump to another project without scrolling back to the top -->
+      <div class="bottom-nav">
+        <div class="thumb-strip" id="thumbStripBottom" style="display: none;"></div>
+        <button class="btn btn-secondary back-btn" onclick="closeProjectDetail()">&larr; Back to full list</button>
       </div>
     </div>
   </div>

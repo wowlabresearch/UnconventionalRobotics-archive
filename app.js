@@ -79,11 +79,18 @@ function renderGrid(filtered) {
 }
 
 /**
- * Render the small thumbnail strip (shown only while the detail view is open)
- * so switching to another project doesn't require going back to the grid first.
+ * Render the small thumbnail strips (shown only while the detail view is
+ * open — one above the content, one repeated below it) so switching to
+ * another project doesn't require going back to the grid first, or
+ * scrolling all the way back up.
  */
 function renderThumbStrip(filtered) {
-  const strip = document.getElementById('thumbStrip');
+  renderThumbStripInto('thumbStrip', filtered);
+  renderThumbStripInto('thumbStripBottom', filtered);
+}
+
+function renderThumbStripInto(containerId, filtered) {
+  const strip = document.getElementById(containerId);
   strip.innerHTML = '';
 
   filtered.forEach(p => {
@@ -218,9 +225,10 @@ function openProjectDetail(project) {
   }
 
   // Swap the grid out for the detail view; filter bar and search stay visible.
-  // The thumb strip re-renders so the newly opened project is highlighted.
+  // The thumb strips re-render so the newly opened project is highlighted.
   document.getElementById('projectGrid').style.display = 'none';
   document.getElementById('thumbStrip').style.display = 'flex';
+  document.getElementById('thumbStripBottom').style.display = 'flex';
   renderThumbStrip(getFilteredProjects());
   const detailView = document.getElementById('projectDetail');
   detailView.style.display = 'block';
@@ -246,6 +254,7 @@ function closeProjectDetail() {
   currentOpenProjectId = null;
   document.getElementById('projectDetail').style.display = 'none';
   document.getElementById('thumbStrip').style.display = 'none';
+  document.getElementById('thumbStripBottom').style.display = 'none';
   document.getElementById('projectGrid').style.display = '';
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 상세 화면을 닫으면 영상 끄기
