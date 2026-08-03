@@ -108,12 +108,15 @@ function renderThumbStripInto(containerId, filtered) {
 }
 
 /**
- * Set year filter and re-render
+ * Set year filter and re-render.
+ * Filter buttons are duplicated (top bar + bottom-nav strip), so active
+ * state is synced by data-year rather than by the clicked element alone.
  */
-function setYearFilter(year, btnElement) {
+function setYearFilter(year) {
   currentYearFilter = year;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btnElement.classList.add('active');
+  document.querySelectorAll('.filter-btn[data-year]').forEach(b => {
+    b.classList.toggle('active', b.dataset.year === year);
+  });
   renderProjects();
 }
 

@@ -91,6 +91,16 @@
       box-shadow: none;
     }
 
+    /* Small year filter repeated in bottom-nav, next to the thumbnail
+       strip so switching years doesn't require scrolling back to the top. */
+    .filter-bar-sm {
+      margin-bottom: 12px;
+    }
+    .filter-btn-sm {
+      padding: 3px 12px;
+      font-size: 0.7rem;
+    }
+
     /* Search Input Bar */
     .search-wrapper {
       width: 220px;
@@ -553,10 +563,10 @@
     <!-- Controls: year filter + search, always visible, on one compact line -->
     <div class="controls-bar">
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="setYearFilter('all', this)">View All</button>
-        <button class="filter-btn" onclick="setYearFilter('2025', this)">2025</button>
+        <button class="filter-btn active" data-year="all" onclick="setYearFilter('all')">View All</button>
+        <button class="filter-btn" data-year="2025" onclick="setYearFilter('2025')">2025</button>
         <button class="filter-btn" disabled title="Coming Soon">2026</button>
-       <!-- <button class="filter-btn" disabled title="Coming Soon">2027</button> --> 
+        <button class="filter-btn" disabled title="Coming Soon">2027</button>
       </div>
 
       <div class="search-wrapper">
@@ -614,6 +624,12 @@
 
       <!-- Bottom navigation: jump to another project without scrolling back to the top -->
       <div class="bottom-nav">
+        <div class="filter-bar filter-bar-sm">
+          <button class="filter-btn filter-btn-sm active" data-year="all" onclick="setYearFilter('all')">View All</button>
+          <button class="filter-btn filter-btn-sm" data-year="2025" onclick="setYearFilter('2025')">2025</button>
+          <button class="filter-btn filter-btn-sm" disabled title="Coming Soon">2026</button>
+          <button class="filter-btn filter-btn-sm" disabled title="Coming Soon">2027</button>
+        </div>
         <div class="thumb-strip" id="thumbStripBottom" style="display: none;"></div>
         <button class="btn btn-secondary back-btn" onclick="closeProjectDetail()">&larr; Back to full list</button>
       </div>

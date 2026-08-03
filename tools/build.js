@@ -52,7 +52,7 @@ function loadProjects() {
     .filter(f => f.endsWith('.md'))
     .sort();
 
-  return files.map((filename, index) => {
+  const projects = files.map((filename, index) => {
     const raw = fs.readFileSync(path.join(PROJECTS_DIR, filename), 'utf8');
     const { data, content } = matter(raw);
 
@@ -81,6 +81,12 @@ function loadProjects() {
       materials: data.materials || []
     };
   });
+
+  // Display order: most recent year first. Array.prototype.sort is stable,
+  // so teams within the same year keep their filename order.
+  projects.sort((a, b) => Number(b.year) - Number(a.year));
+
+  return projects;
 }
 
 function serializeProjects(projects) {
