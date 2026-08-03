@@ -8,6 +8,21 @@ let currentSearchTerm = '';
 let currentOpenProjectId = null; // set while the detail view is open, for thumb-strip highlighting
 
 /**
+ * Scrolls to the top of the page. This site is embedded in Wix as an
+ * auto-growing iframe with no scrollbar of its own — the real scrolling
+ * happens on the parent Wix page, so window.scrollTo() here only affects
+ * this iframe's (non-scrolling) document and does nothing visible. Also
+ * post a message asking the parent page to scroll itself to the top; a
+ * small Custom Code snippet on the Wix side listens for it.
+ */
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'SCROLL_TO_TOP' }, '*');
+  }
+}
+
+/**
  * Projects matching the current year filter + search term
  */
 function getFilteredProjects() {
@@ -248,7 +263,7 @@ function openProjectDetail(project) {
   detailView.style.display = 'block';
 
   // 상세 화면을 열 때마다 페이지 맨 위로 스크롤합니다.
-  window.scrollTo(0, 0);
+  scrollToTop();
 
   // Blog/gallery images load in asynchronously and change the page's
   // height as they do; re-pin scroll to the top each time one finishes so
@@ -256,7 +271,7 @@ function openProjectDetail(project) {
   // instead of drifting down once images have loaded.
   detailView.querySelectorAll('img').forEach(img => {
     if (!img.complete) {
-      img.addEventListener('load', () => { window.scrollTo(0, 0); });
+      img.addEventListener('load', scrollToTop);
     }
   });
 }
@@ -272,7 +287,7 @@ function closeProjectDetail() {
   document.getElementById('projectGrid').style.display = '';
   const videoContainer = document.getElementById('videoContainer');
   videoContainer.innerHTML = ''; // 상세 화면을 닫으면 영상 끄기
-  window.scrollTo(0, 0);
+  scrollToTop();
 }
 
 /**
