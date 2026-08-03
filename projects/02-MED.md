@@ -62,3 +62,11 @@ This work demonstrates how haptic feedback can effectively modify driver behavio
 [doi.org/10.1007/978-3-032-30819-1_27](https://doi.org/10.1007/978-3-032-30819-1_27)
 
 **Keywords:** Electric Vehicles, Sustainable Driving, Haptic Feedback, Embodied Interaction, Pedal Sensing, Driver Behavior
+
+
+## 👥 Affiliations
+
+* **Joonhee Lee** — School of Electronics and Electrical Engineering (Design Engineering), Hongik University 
+* **Sojin Han** — School of Electronics and Electrical Engineering, Hongik University 
+* **Eunchae Song** — Mechanical and System Design Engineering, Hongik University 
+* **Shinyoung Lee** — Design Convergence, Hongik University 

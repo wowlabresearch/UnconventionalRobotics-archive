@@ -9,6 +9,20 @@ const rawProjects = [
     "year": "2025",
     "team": "NCT",
     "members": "Jiyoon Lee, Seungwon Hu, Han-cheol Lee",
+    "authors": [
+      {
+        "name": "Jiyoon Lee",
+        "affiliation": "Visual Communication Design & Computer Engineering, Hongik University"
+      },
+      {
+        "name": "Seungwon Hu",
+        "affiliation": "Computer Engineering, Hongik University"
+      },
+      {
+        "name": "Han-cheol Lee",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      }
+    ],
     "title": "moveR: A Mobile Platform-based Encounter-type Haptic System using a Pantograph Mechanism",
     "desc": "This study proposes a mobile platform-based Encounter-type haptic system, named 'moveR', designed to provide reaction force feedback from virtual objects to the user. While conventional fixed haptic devices suffer from limited workspace, moveR overcomes this limitation by combining a four-wheeled mobile platform with a pantograph-based haptic mechanism. The system tracks the user's hand position in real time using hand-tracking data from a head-mounted display (HMD) and proactively moves the mobile platform toward predicted contact points.",
     "keywords": [
@@ -29,6 +43,24 @@ const rawProjects = [
     "year": "2025",
     "team": "MED",
     "members": "Joonhee Lee, Sojin Han, Eunchae Song, Shinyoung Lee",
+    "authors": [
+      {
+        "name": "Joonhee Lee",
+        "affiliation": "School of Electronics and Electrical Engineering (Design Engineering), Hongik University"
+      },
+      {
+        "name": "Sojin Han",
+        "affiliation": "School of Electronics and Electrical Engineering, Hongik University"
+      },
+      {
+        "name": "Eunchae Song",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      },
+      {
+        "name": "Shinyoung Lee",
+        "affiliation": "Design Convergence, Hongik University"
+      }
+    ],
     "title": "Real-Time Robot-Hand Interface for Driver Acceleration Feedback",
     "desc": "Aggressive driving accelerates electric vehicle (EV) battery degradation, yet conventional visual and auditory warnings often distract drivers and cause habituation. We present a real-time robotic-hand interface that detects sudden pedal operations via potentiometers and delivers empathy-oriented haptic feedback. Using a derivative-based algorithm, the system identifies rapid acceleration or deceleration from custom-fabricated pedals and triggers a predefined fold–hold–open gesture, raising awareness without explicit instructions. A pilot study demonstrated stable, low-latency operation and confirmed that the embodied haptic feedback is perceived as intuitive and non-intrusive. Future work will evaluate the system under realistic conditions using driving motion simulators.",
     "keywords": [
@@ -59,6 +91,20 @@ const rawProjects = [
     "year": "2025",
     "team": "III",
     "members": "Gyuhyun Jang, Yongmin Park, SoYoon Park",
+    "authors": [
+      {
+        "name": "Gyuhyun Jang",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      },
+      {
+        "name": "Yongmin Park",
+        "affiliation": "Computer Engineering, Hongik University"
+      },
+      {
+        "name": "SoYoon Park",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      }
+    ],
     "title": "Hand-driven Embodied Interface for Hybrid Origami Soft Robot",
     "desc": "Origami-based soft robots exhibit continuous and nonlinear deformation, which makes intuitive and stable control difficult when using conventional rigid input devices. This paper presents a hand-driven embodied interface for a hybrid origami soft robot, allowing users to directly manipulate robot deformation through natural hand motions without prior training. We design a hybrid origami structure combining Kresling and accordion patterns to balance stiffness and flexibility, and implement a wire-driven actuation system using continuous-rotation servomotors. A web-based real-time control system connects a browser interface and embedded hardware via the Web Serial API, enabling direct interaction without a dedicated server.",
     "keywords": [
@@ -79,6 +125,24 @@ const rawProjects = [
     "year": "2025",
     "team": "LIMERO",
     "members": "Seungmin Kang, Jihoon Kim, Seoyoon Jang, Junghyeon Cheon",
+    "authors": [
+      {
+        "name": "Seungmin Kang",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      },
+      {
+        "name": "Jihoon Kim",
+        "affiliation": "Computer Engineering, Hongik University"
+      },
+      {
+        "name": "Seoyoon Jang",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      },
+      {
+        "name": "Junghyeon Cheon",
+        "affiliation": "Mechanical and System Design Engineering, Hongik University"
+      }
+    ],
     "title": "Physical Embodiment of Invisible Emotions: A Pneumatic-Based Breathing Soft Robotic Interface",
     "desc": "Drawing inspiration from the natural mechanism of respiration, the proposed system utilizes pneumatic actuation to simulate rhythmic expansion and contraction. This enables users to intuitively observe their abstract emotional states as physical entities. We detail the design and implementation of a miniaturized, three-layer hardware mechanism encompassing pneumatic tubes, a hinge structure, and haptic actuators, all integrated within a handheld form factor. By converting affective data into a 'breathing' tangible object, this research aims to elicit respiratory synchronization, thereby facilitating profound emotional engagement.",
     "keywords": [

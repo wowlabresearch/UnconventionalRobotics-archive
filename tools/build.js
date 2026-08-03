@@ -13,6 +13,35 @@ const OUTPUT_FILE = path.join(__dirname, '..', 'projects-data.js');
 
 marked.setOptions({ gfm: true });
 
+/**
+ * Pulls a trailing "## ... Affiliations" section (a bullet list of
+ * "**Name** — Affiliation" lines) out of the markdown body, so it can be
+ * shown as part of the Team Members line at the top of the page instead of
+ * as a separate section at the bottom. Returns the body with that section
+ * removed, plus the parsed { name, affiliation } list (empty if none found).
+ */
+function extractAffiliations(content) {
+  const headingMatch = /^##\s*.*Affiliations.*$/im.exec(content);
+  if (!headingMatch) {
+    return { content, authors: [] };
+  }
+
+  const afterHeading = content.slice(headingMatch.index + headingMatch[0].length);
+  const nextHeadingMatch = /^#{2,3}\s+/m.exec(afterHeading);
+  const sectionEnd = nextHeadingMatch ? nextHeadingMatch.index : afterHeading.length;
+  const sectionBody = afterHeading.slice(0, sectionEnd);
+
+  const authors = [];
+  const lineRegex = /^[*-]\s+\*\*(.+?)\*\*\s+—\s+(.+?)\s*$/gm;
+  let lineMatch;
+  while ((lineMatch = lineRegex.exec(sectionBody)) !== null) {
+    authors.push({ name: lineMatch[1].trim(), affiliation: lineMatch[2].trim() });
+  }
+
+  const cleanedContent = content.slice(0, headingMatch.index) + afterHeading.slice(sectionEnd);
+  return { content: cleanedContent.trim(), authors };
+}
+
 function loadProjects() {
   if (!fs.existsSync(PROJECTS_DIR)) {
     throw new Error(`Missing projects/ directory at ${PROJECTS_DIR}`);
@@ -33,11 +62,14 @@ function loadProjects() {
       }
     }
 
+    const { content: bodyContent, authors } = extractAffiliations(content);
+
     return {
       id: index + 1,
       year: String(data.year),
       team: data.team,
       members: data.members || '',
+      authors,
       title: data.title,
       desc: data.desc || '',
       keywords: data.keywords || [],
@@ -45,7 +77,7 @@ function loadProjects() {
       youtubeEmbed: data.youtubeEmbed || null,
       videoUrl: data.videoUrl || null,
       gallery: data.gallery || [],
-      blogContent: marked.parse(content.trim()),
+      blogContent: marked.parse(bodyContent),
       materials: data.materials || []
     };
   });

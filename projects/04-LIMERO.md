@@ -48,3 +48,10 @@ The control module is driven by an ESP32, which continuously regulates airflow a
 
 ### Results
 The implemented prototype stably performed multimodal interactions, seamlessly synchronizing the robot's inflation, tail movement, and vibration patterns based on emotion recognition results. Notably, during negative emotional states such as sadness or tension, the robot's calm breathing motion successfully shifted the user's attention from visual information to a tactile and physical experience. This demonstrated positive potential for providing psychological stabilization and profound empathy.
+
+## 👥 Affiliations
+
+* **Seungmin Kang** — Mechanical and System Design Engineering, Hongik University 
+* **Jihoon Kim** — Computer Engineering, Hongik University 
+* **Seoyoon Jang** — Mechanical and System Design Engineering, Hongik University 
+* **Junghyeon Cheon** — Mechanical and System Design Engineering, Hongik University 

@@ -49,3 +49,10 @@ To enable intuitive interaction, we implemented a lightweight web-based real-tim
 
 ### Research Results
 The proposed embodied interface effectively bridges human hand motion and the continuous deformation of origami soft robots. By framing soft robot control as an interaction problem, this work demonstrates a practical approach for intuitive manipulation while highlighting the fundamental trade-offs between intuitiveness and stability under open-loop actuation.
+
+
+## 👥 Affiliations
+
+* **Gyuhyun Jang** — Mechanical and System Design Engineering, Hongik University 
+* **Yongmin Park** — Computer Engineering, Hongik University 
+* **SoYoon Park** — Mechanical and System Design Engineering, Hongik University 

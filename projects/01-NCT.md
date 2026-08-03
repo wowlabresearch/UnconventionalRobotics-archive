@@ -54,3 +54,10 @@ Haptic feedback has long been regarded as a crucial element for immersive intera
 
 - **State-Based Motion Strategy:** When the end-effector is in a non-contact state, the platform tracks the user's hand; once contact is detected, the automatic following motion is suspended to prevent interaction instability.
 - **Haptic Rendering:** Inspired by the Finger Proxy algorithm, the system calculates a resistive force using a linear spring model, F=kx, where k denotes the stiffness parameter reflecting the material properties of the virtual object and x denotes the penetration depth.
+
+
+## 👥 Affiliations
+
+* **Jiyoon Lee** — Visual Communication Design & Computer Engineering, Hongik University 
+* **Seungwon Hu** — Computer Engineering, Hongik University 
+* **Han-cheol Lee** — Mechanical and System Design Engineering, Hongik University 
