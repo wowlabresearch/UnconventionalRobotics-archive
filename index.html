@@ -40,6 +40,28 @@
       color: #1e293b;
       margin-top: 4px;
     }
+    .course-badge {
+      display: inline-block;
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      border: 1px solid #dbeafe;
+    }
+    .instructor-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 32px;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #64748b;
+      font-weight: 500;
+    }
 
     /* Controls row: year filter + search on one line, to keep the top of
        the page compact so opened project content is front and center. */
@@ -556,8 +578,13 @@
 
   <div class="archive-container">
     <div class="header">
-      <h1>Unconventional Robotics: Design and Application </h1>
+      <span class="course-badge">Offered in Fall • Hongik University</span>
+      <h1>Unconventional Robotics: Design and Application | 신개념 로봇 개발과 응용</h1>
       <h2>Student Team Projects Archive</h2>
+      <div class="instructor-info">
+        <span><strong>Instructor:</strong> Prof. Kyung Yun Choi (최경윤)</span>
+        <span><strong>Course Hours:</strong> 3hr/week</span>
+      </div>
     </div>
 
     <!-- Controls: year filter + search, always visible, on one compact line -->
